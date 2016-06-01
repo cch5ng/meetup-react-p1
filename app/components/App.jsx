@@ -5,6 +5,7 @@ import ReactDOM from 'react-dom';
 import Home from './Home.jsx';
 import Events from './Events.jsx';
 import Event from './Event.jsx';
+import AddEvent from './AddEvent.jsx';
 import uuid from 'node-uuid';
 //import {Modal} from 'react-bootstrap';
 //import {Button} from 'react-bootstrap';
@@ -38,32 +39,35 @@ export default class App extends React.Component {
 	render() {
 		let recipes = this.state.recipes;
 		return (
-			<div className="container-fluid" >
-				<header>
-					<nav className="navbar navbar-default">
-						<div className="container-fluid">
-							<div className="navbar-header">
-								<button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-									<span className="sr-only">Toggle navigation</span>
-									<span className="icon-bar"></span>
-									<span className="icon-bar"></span>
-									<span className="icon-bar"></span>
-								</button>
-								<IndexLink to='/' className="navbar-brand header-link" activeClassName='active'>Meetup Events</IndexLink>
-							</div>
+			<div className="container-fluid">
+				<div className="row">
+					<header>
+						<nav className="navbar navbar-default">
+							<div className="container-fluid">
+								<div className="navbar-header">
+									<button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+										<span className="sr-only">Toggle navigation</span>
+										<span className="icon-bar"></span>
+										<span className="icon-bar"></span>
+										<span className="icon-bar"></span>
+									</button>
+									<IndexLink to='/' className="navbar-brand header-link" activeClassName='active'>Meetup Events</IndexLink>
+								</div>
 
-							<div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-								<ul className="nav navbar-nav navbar-right">
-									<li><NavLink to='/events' className="header-link" >Events</NavLink></li>
-	{/* TODO fix link */}
-									<li><NavLink to='/registration' className="header-link" >Register</NavLink></li>
-								</ul>
-							</div>{/* /.navbar-collapse */}
-						</div>{/* /.container-fluid */}
-					</nav>
-				</header>
+								<div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+									<ul className="nav navbar-nav navbar-right">
+										<li><NavLink to='/addEvent' className="header-link" >Add Event</NavLink></li>
+										<li><NavLink to='/events' className="header-link" >Events</NavLink></li>
+		{/* TODO fix link */}
+										<li><NavLink to='/registration' className="header-link" >Register</NavLink></li>
+									</ul>
+								</div>{/* /.navbar-collapse */}
+							</div>{/* /.container-fluid */}
+						</nav>
+					</header>
+				</div>
 
-				{this.props.children}
+			{this.props.children}
 
 {/*
 				<Recipes recipes={recipes} onDelete={this.deleteRecipe} />
