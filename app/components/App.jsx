@@ -47,7 +47,7 @@ export default class App extends React.Component {
 									<span className="sr-only">Toggle navigation</span>
 									<span className="icon-bar"></span>
 									<span className="icon-bar"></span>
-									<span class="icon-bar"></span>
+									<span className="icon-bar"></span>
 								</button>
 								<IndexLink to='/' className="navbar-brand header-link" activeClassName='active'>Meetup Events</IndexLink>
 							</div>
@@ -120,7 +120,7 @@ export default class App extends React.Component {
 					<div className="col-xs-12 col-sm-12">
 						<p className="text-center">Brought to you with <i className="fa fa-heart"></i><br /> 
 							from <a href="http://www.carolchung.com" target="_blank">Tusk Tusk Dev.</a><br />
-							<a href="https://github.com/cch5ng/recipe-box-firebase" target="_blank">Source</a>
+							<a href="https://github.com/cch5ng/meetup-react-p1" target="_blank">Source</a>
 						</p>
 					</div>
 				</div>

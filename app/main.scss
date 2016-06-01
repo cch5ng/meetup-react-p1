@@ -1,13 +1,14 @@
 /* app/main.scss */
 
 //vars
-$primary-color: #f9f9fd;
-$nav-color: #ff9a96;
+$primary-color: #f6fafa;
+$nav-color: #d6279a;
 $logo-color: #003333;
 $table-color: #96ceb4;
 
 body {
 	background: $primary-color;
+
 }
 
 //bootstrap override
@@ -30,8 +31,9 @@ body {
 }
 
 .navbar-brand {
-	font-family: 'Lobster Two', cursive;
+	font-family: 'Raleway', sans-serif;
 	font-size: 1.65em;
+	font-weight: 500;
 }
 
 //not enough viz contrast with white text on red bgd
@@ -138,7 +140,7 @@ input {
 }
 
 .fa-heart {
-	color: #990033;
+	color: $nav-color;
 }
 
 .hide-fa {
