@@ -1,6 +1,6 @@
 # Meetup Events (React-Firebase)
 
-* Practice for forms
+* [Work in Progress] Practice for forms
 * Using React, ES6
 
 ## Warning
@@ -8,6 +8,8 @@
 * For authentication, please use
 ** user:
 ** pwd: 
+
+* Styles are still in flux, please bear with formatting!
 
 ## Comments/Concerns
 

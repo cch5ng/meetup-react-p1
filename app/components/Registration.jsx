@@ -62,14 +62,14 @@ export default class Registration extends React.Component {
 						<div className="form-group">
 							<label htmlFor="pwd" className="col-md-2 control-label">Password</label>
 							<div className="col-md-10">
-								<input id="pwd" className="form-control" name="pwd" type="password" onChange={this.validatePwd} placeholder="Min. length of 8, one number, one upper-case letter" required />
+								<input id="pwd" className="form-control" name="pwd" type="password" onChange={this.validatePwd} placeholder=">= 8 chars, 1 num, 1 CAP, 1 special char" required />
 								{this.state.isPwdValid ? null : this.displayPwdError()}
 							</div>
 						</div>
 						<div className="form-group">
 							<label htmlFor="pwd2" className="col-md-2 control-label">Confirm Password</label>
 							<div className="col-md-10">
-								<input id="pwd2" className="form-control" name="pwd2" type="password" onChange={this.validatePwd2} required />
+								<input id="pwd2" className="form-control" name="pwd2" type="password" onChange={this.validatePwd2} placeholder=">= 8 chars, 1 num, 1 CAP, 1 special char" required />
 								{this.state.isPwd2Valid ? null : this.displayPwd2Error()}
 								{this.state.passwordsMatch ? null : this.displayPwdMatchError()}
 							</div>
@@ -129,6 +129,11 @@ export default class Registration extends React.Component {
 			pwdErrorsAr.push('Password needs 8 or more characters');
 		}
 
+		//contains special char
+		if (!pwd.value.match(/[\!\@\#\$\%\^\&\*]/g)) {
+			pwdErrorsAr.push('Password needs a special character: !, @, #, $, %, ^, & or *');
+		}
+
 		if (pwdErrorsAr.length === 0) {
 			this.setState({isPwdValid: true, pwdErrors: []})
 			pwd.setCustomValidity('');
@@ -174,15 +179,10 @@ export default class Registration extends React.Component {
 			pwdErrorsAr2.push('Password needs 8 or more characters');
 		}
 
-		// if (this.passwordsMatch()) {
-		// 	let pwdErrorsAr1 = this.state.pwdErrors.filter((err) => {
-		// 		return !(err.includes('not matching'));
-		// 	})
-		// 	console.log('updated pwdErrorsAr1: ' + pwdErrorsAr1);
-		// 	this.setState({pwdErrors: pwdErrorsAr1});
-		// } else {
-		// 	pwdErrorsAr2.push('Passwords are not matching. Check for typos')
-		// }
+		//contains special char
+		if (!pwd2.value.match(/[\!\@\#\$\%\^\&\*]/g)) {
+			pwdErrorsAr2.push('Password needs a special character: !, @, #, $, %, ^, & or *');
+		}
 
 		if (pwdErrorsAr2.length === 0) {
 			this.setState({isPwd2Valid: true, pwd2Errors: []})
