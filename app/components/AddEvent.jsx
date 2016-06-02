@@ -117,9 +117,9 @@ export default class AddEvent extends React.Component {
 							</div>
 						</div>
 
-
-						<button className="btn btn-primary col-sm-2" id="submit" type="submit">Save</button>
-
+						<div className="col-md-4 center-block">
+							<button className="btn btn-primary col-sm-2" id="event-submit" type="submit">Save</button>
+						</div>
 					</form>
 				</div>
 			</div>
