@@ -26,7 +26,9 @@ export default class Registration extends React.Component {
 			isPwdValid: true,
 			pwdErrors: [],
 			isPwd2Valid: true,
-			pwd2Errors: []
+			pwd2Errors: [],
+			passwordsMatch: true,
+			passwordsMatchError: null
 			// name: this.props.name,
 			// ingredients: this.props.ingredients,
 			// ingredientsStr: ingredientsStr,
@@ -60,17 +62,20 @@ export default class Registration extends React.Component {
 						<div className="form-group">
 							<label htmlFor="pwd" className="col-md-2 control-label">Password</label>
 							<div className="col-md-10">
-								<input id="pwd" className="form-control" name="pwd" type="password" placeholder="Min. length of 8, one number, one upper-case letter" required />
+								<input id="pwd" className="form-control" name="pwd" type="password" onChange={this.validatePwd} placeholder="Min. length of 8, one number, one upper-case letter" required />
+								{this.state.isPwdValid ? null : this.displayPwdError()}
 							</div>
 						</div>
 						<div className="form-group">
 							<label htmlFor="pwd2" className="col-md-2 control-label">Confirm Password</label>
 							<div className="col-md-10">
-								<input id="pwd2" className="form-control" name="pwd2" type="password" required />
+								<input id="pwd2" className="form-control" name="pwd2" type="password" onChange={this.validatePwd2} required />
+								{this.state.isPwd2Valid ? null : this.displayPwd2Error()}
+								{this.state.passwordsMatch ? null : this.displayPwdMatchError()}
 							</div>
 						</div>
 						<div className="col-md-4 text-center">
-							<button className="btn btn-primary" id="register-submit" type="button">Save</button>
+							<button className="btn btn-primary" id="register-submit" onClick={this.passwordsMatch} type="button">Save</button>
 						</div>
 					</form>
 				</div>
@@ -99,5 +104,120 @@ export default class Registration extends React.Component {
 		return (
 			<p className="email-error error">{this.state.emailErrors}</p>
 		)
+	};
+
+	validatePwd = (e) => {
+		var pwd = document.getElementById('pwd');
+		var pwdErrorsAr = [];
+
+		console.log('pwd event listener');
+		if (pwd.value.match(/[A-Z]/g)) {
+			
+		//pwd.setCustomValidity("Email address should contain a '@' and '.' characters.");
+		} else {
+			pwdErrorsAr.push('Password should contain at least one upper-case letter');
+		}
+		if (pwd.value.match(/\d/g)) {
+			
+		//pwd.setCustomValidity("Email address should contain a '@' and '.' characters.");
+		} else {
+			pwdErrorsAr.push('Password should contain at least one number');
+		}
+
+		//less than 8 chars
+		if (pwd.value.length < 8) {
+			pwdErrorsAr.push('Password needs 8 or more characters');
+		}
+
+		if (pwdErrorsAr.length === 0) {
+			this.setState({isPwdValid: true, pwdErrors: []})
+			pwd.setCustomValidity('');
+		} else {
+			this.setState({isPwdValid: false, pwdErrors: pwdErrorsAr})
+			pwd.setCustomValidity(pwdErrorsAr.join('. '));
+		}
+		console.log('pwdErrorsAr: ' + pwdErrorsAr);
+	};
+
+	passwordsMatch = () => {
+		let pwd = document.getElementById('pwd');
+		let pwd2 = document.getElementById('pwd2');
+
+		if (pwd.value === pwd2.value) {
+			this.setState({passwordsMatch: true, passwordsMatchError: null});
+		} else {
+			this.setState({passwordsMatch: false, passwordsMatchError: 'Passwords are not matching. Check for typos'});
+		}
+
 	}
+
+	validatePwd2 = (e) => {
+		var pwd2 = document.getElementById('pwd2');
+		var pwdErrorsAr2 = [];
+
+		console.log('pwd event listener');
+		if (pwd2.value.match(/[A-Z]/g)) {
+			
+		//pwd.setCustomValidity("Email address should contain a '@' and '.' characters.");
+		} else {
+			pwdErrorsAr2.push('Password should contain at least one upper-case letter');
+		}
+		if (pwd2.value.match(/\d/g)) {
+			
+		//pwd.setCustomValidity("Email address should contain a '@' and '.' characters.");
+		} else {
+			pwdErrorsAr2.push('Password should contain at least one number');
+		}
+
+		//less than 8 chars
+		if (pwd2.value.length < 8) {
+			pwdErrorsAr2.push('Password needs 8 or more characters');
+		}
+
+		// if (this.passwordsMatch()) {
+		// 	let pwdErrorsAr1 = this.state.pwdErrors.filter((err) => {
+		// 		return !(err.includes('not matching'));
+		// 	})
+		// 	console.log('updated pwdErrorsAr1: ' + pwdErrorsAr1);
+		// 	this.setState({pwdErrors: pwdErrorsAr1});
+		// } else {
+		// 	pwdErrorsAr2.push('Passwords are not matching. Check for typos')
+		// }
+
+		if (pwdErrorsAr2.length === 0) {
+			this.setState({isPwd2Valid: true, pwd2Errors: []})
+			pwd2.setCustomValidity('');
+		} else {
+			this.setState({isPwd2Valid: false, pwd2Errors: pwdErrorsAr2})
+			pwd2.setCustomValidity(pwdErrorsAr2.join('. '));
+		}
+		console.log('pwdErrorsAr2: ' + pwdErrorsAr2);
+
+	};
+
+	displayPwdError = () => {
+		let pwdErrors = this.state.pwdErrors;
+		return (
+			pwdErrors.map(err =>
+				<p className="pwd-error error">{err}</p>
+			)
+		)
+	};
+
+	displayPwd2Error = () => {
+		let pwd2Errors = this.state.pwd2Errors;
+		return (
+			pwd2Errors.map(err =>
+				<p className="pwd-error error">{err}</p>
+			)
+		)
+	};
+
+
+	displayPwdMatchError = () => {
+		//let pwdMatchErr = this.state.pwdErrors;
+		return (
+				<p className="pwd-match-error error">{this.state.passwordsMatchError}</p>
+		)
+	};
 }
