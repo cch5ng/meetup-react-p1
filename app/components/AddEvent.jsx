@@ -158,13 +158,7 @@ export default class AddEvent extends React.Component {
 				long = ',' + position.coords.longitude;
 				reverseGeoCodeUrl += lat + long;
 
-			}, function(error) {
-			console.log('sorry, unable to retrieve location');
-			});
-		}
-
-		window.setTimeout(function() {
-			$.ajax(reverseGeoCodeUrl).done(function(data) {
+				$.ajax(reverseGeoCodeUrl).done(function(data) {
 				//if (data) {
 					results = data['results'][0]['address_components'];
 					geoAdd1 = results[0]['short_name'] + ' ' + results[1]['short_name'];
@@ -187,7 +181,39 @@ export default class AddEvent extends React.Component {
 			}.bind(that)).fail(function(jqXHR, textStatus, errorThrown) {
 				console.log('err: ' + errorThrown);
 			}.bind(that));
-		}, 4000);
+
+
+
+			}, function(error) {
+			console.log('sorry, unable to retrieve location');
+			});
+		}
+
+		// window.setTimeout(function() {
+		// 	$.ajax(reverseGeoCodeUrl).done(function(data) {
+		// 		//if (data) {
+		// 			results = data['results'][0]['address_components'];
+		// 			geoAdd1 = results[0]['short_name'] + ' ' + results[1]['short_name'];
+		// 			console.log('geoAdd1: ' + geoAdd1);
+		// 			geoCity = results[2]['short_name'];
+		// 			console.log('geoCity: ' + geoCity);
+		// 			geoZip = results[6]['short_name'];
+		// 			//geoAddFullAr.push(geoZip);
+		// 			console.log('geoZip: ' + geoZip);
+
+		// 			this.setState({
+		// 				geoLocationChecked: true,
+		// 				geoAdd1: geoAdd1,
+		// 				geoCity: geoCity,
+		// 				geoZip: geoZip
+		// 			});
+		// 			console.log('this: ' + this);
+		// 			console.log('state geoAdd1: ' + this.state.geoLocationChecked);
+		// 		//}
+		// 	}.bind(that)).fail(function(jqXHR, textStatus, errorThrown) {
+		// 		console.log('err: ' + errorThrown);
+		// 	}.bind(that));
+		// }, 4000);
 
 	};
 
