@@ -79,11 +79,9 @@ export default class AddEvent extends React.Component {
 								<input id="evt-end-date" className="form-control" type="datetime-local" name="evt-end-date" required />
 							</div>
 						</div>
-{/* TODO js logic for checkbox */}
-
 						<div className="checkbox col-sm-10 col-sm-offset-2">
 							<label>
-								<input id="curLocation" type="checkbox" defaultChecked onChange={this.clearLocation} />Use current location
+								<input id="curLocation" type="checkbox" defaultChecked onChange={this.toggleGeolocation} />Use current location
 							</label>
 						</div>
 						<br /><br />
@@ -99,19 +97,19 @@ export default class AddEvent extends React.Component {
 							<div className="form-group">
 								<label htmlFor="add1" className="col-sm-2 control-label">Street Address</label>
 								<div className="col-sm-10">
-									<input type="text" id="add1" className="form-control" name="add1" required autoComplete="" value={this.state.geoAdd1} />
+									<input type="text" id="add1" className="form-control" name="address" required autoComplete="street-address" value={this.state.geoAdd1} />
 								</div>
 							</div>
 							<div className="form-group">
 								<label htmlFor="city" className="col-sm-2 control-label">City</label>
 								<div className="col-sm-10">
-									<input type="text" id="city" className="form-control" name="city" required autoComplete="" value={this.state.geoCity} />
+									<input type="text" id="city" className="form-control" name="province" required autoComplete="address-level2" value={this.state.geoCity} />
 								</div>
 							</div>
 							<div className="form-group">
 								<label htmlFor="zip" className="col-sm-2 control-label">Zip Code</label>
 								<div className="col-sm-10">
-									<input type="number" id="zip" className="form-control" name="zip" required autoComplete="" value={this.state.geoZip} />
+									<input type="number" id="zip" className="form-control" name="state" required autoComplete="postal-code" value={this.state.geoZip} />
 								</div>
 							</div>
 						</div>
@@ -178,46 +176,17 @@ export default class AddEvent extends React.Component {
 					console.log('this: ' + this);
 					console.log('state geoAdd1: ' + this.state.geoLocationChecked);
 				//}
-			}.bind(that)).fail(function(jqXHR, textStatus, errorThrown) {
-				console.log('err: ' + errorThrown);
-			}.bind(that));
-
-
+				}.bind(that)).fail(function(jqXHR, textStatus, errorThrown) {
+					console.log('err: ' + errorThrown);
+				}.bind(that));
 
 			}, function(error) {
 			console.log('sorry, unable to retrieve location');
 			});
 		}
-
-		// window.setTimeout(function() {
-		// 	$.ajax(reverseGeoCodeUrl).done(function(data) {
-		// 		//if (data) {
-		// 			results = data['results'][0]['address_components'];
-		// 			geoAdd1 = results[0]['short_name'] + ' ' + results[1]['short_name'];
-		// 			console.log('geoAdd1: ' + geoAdd1);
-		// 			geoCity = results[2]['short_name'];
-		// 			console.log('geoCity: ' + geoCity);
-		// 			geoZip = results[6]['short_name'];
-		// 			//geoAddFullAr.push(geoZip);
-		// 			console.log('geoZip: ' + geoZip);
-
-		// 			this.setState({
-		// 				geoLocationChecked: true,
-		// 				geoAdd1: geoAdd1,
-		// 				geoCity: geoCity,
-		// 				geoZip: geoZip
-		// 			});
-		// 			console.log('this: ' + this);
-		// 			console.log('state geoAdd1: ' + this.state.geoLocationChecked);
-		// 		//}
-		// 	}.bind(that)).fail(function(jqXHR, textStatus, errorThrown) {
-		// 		console.log('err: ' + errorThrown);
-		// 	}.bind(that));
-		// }, 4000);
-
 	};
 
-	clearLocation = () => {
+	toggleGeolocation = () => {
 		if (this.state.geoLocationChecked) {
 			this.setState({
 				geoLocationChecked: false,
