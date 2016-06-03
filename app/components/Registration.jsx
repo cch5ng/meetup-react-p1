@@ -75,6 +75,7 @@ export default class Registration extends React.Component {
 							</div>
 						</div>
 						<div className="col-md-4 text-center">
+{/* TODO want to final validation onSubmit, if all inputs valid save record to firebase*/}
 							<button className="btn btn-primary" id="register-submit" onClick={this.passwordsMatch} type="button">Save</button>
 						</div>
 					</form>
