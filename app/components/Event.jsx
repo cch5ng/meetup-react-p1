@@ -15,6 +15,7 @@ export default class Event extends React.Component {
 			host: this.props.host,
 			startDate: this.props.startDate,
 			endDate: this.props.endDate,
+			venue: this.props.venue,
 			add1: this.props.add1,
 			city: this.props.city,
 			zip: this.props.zip,
@@ -37,7 +38,7 @@ export default class Event extends React.Component {
 {/* TODO fix location*/}
 						<li><b>Location</b> {this.aggregateLocation()}</li>
 						<li><b>Message from Host</b> {this.state.msg}</li>
-						<li><b>Guests</b> {this.state.guests}</li>
+						<li><b>Guests</b> {this.friendlyGuestList()}</li>
 					</ul>
 				</details>
 			</div>
@@ -48,7 +49,7 @@ export default class Event extends React.Component {
 	//helpers
 	aggregateLocation = () => {
 		let location = '';
-		location = this.state.add1 + ', ' + this.state.city + ' ' + this.state.zip;
+		location = this.state.venue + ', ' + this.state.add1 + ', ' + this.state.city + ' ' + this.state.zip;
 		return location;
 	};
 
@@ -82,6 +83,19 @@ export default class Event extends React.Component {
 
 		fTime = fHours + ':' + fMinutes + suffix;
 		return fTime;
+	};
+
+	friendlyGuestList = () => {
+		let fList = '',
+			len = this.state.guests.length;
+		this.state.guests.forEach((guest, idx) => {
+			if (idx < len - 1) {
+				fList += guest + ', ';
+			} else {
+				fList += guest;
+			}
+		});
+		return fList;
 	};
 
 }

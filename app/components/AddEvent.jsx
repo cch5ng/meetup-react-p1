@@ -88,9 +88,9 @@ export default class AddEvent extends React.Component {
 
 						<div className="add-group">
 							<div className="form-group">
-								<label htmlFor="location" className="col-sm-2 control-label">Location</label>
+								<label htmlFor="venue" className="col-sm-2 control-label">Venue</label>
 								<div className="col-sm-10">
-									<input type="text" id="location" className="form-control" name="location" placeholder="(optional) Venue name" />
+									<input type="text" id="venue" className="form-control" name="venue" placeholder="(optional)" />
 								</div>
 							</div>
 							<div className="form-group">
