@@ -6,7 +6,6 @@ export default class Home extends React.Component {
 
 	constructor(props) {
 		super(props);
-
 		// this.state = {
 		// }
 	}
@@ -40,10 +39,7 @@ export default class Home extends React.Component {
 						<button className="btn btn-primary btn-block" id="btn-login" type="button">Log In</button>
 					</div>
 				</form>
-
-
 			</div>
-
 		);
 	}
 }

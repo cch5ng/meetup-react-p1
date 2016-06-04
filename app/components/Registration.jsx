@@ -1,23 +1,11 @@
 //app/components/Registration.jsx
 
 import React from 'react';
-import {Modal} from 'react-bootstrap';
-import {Button} from 'react-bootstrap';
-import {Input} from 'react-bootstrap';
-import Rebase from 're-base';
-import uuid from 'node-uuid';
-
-// var base = Rebase.createClass('https://recipe-keeper.firebaseio.com/web/data');
-// var recipesRef = new Firebase("https://recipe-keeper.firebaseio.com/recipes");
-// var stepsEditStr = '';
 
 export default class Registration extends React.Component {
 
 	constructor(props) {
 		super(props);
-
-		// let stepsStr = this.convertStepToString(this.props.steps);
-		// let ingredientsStr = this.convertIngredientToString(this.props.ingredients);
 
 		this.state = {
 			isOpen: false,
@@ -29,21 +17,14 @@ export default class Registration extends React.Component {
 			pwd2Errors: [],
 			passwordsMatch: true,
 			passwordsMatchError: null
-			// name: this.props.name,
-			// ingredients: this.props.ingredients,
-			// ingredientsStr: ingredientsStr,
-			// steps: this.props.steps,
-			// stepsStr: stepsStr
 		}
 	}
 
 	render() {
-
-
 		return (
 			<div>
 				<h3>Register</h3>
-				<form className="form-horizontal"> {/* id="reg-form" */}
+				<form className="form-horizontal" id="reg-form">
 					<div className="form-group">
 						<label htmlFor="name" className="col-sm-2 control-label">Name</label>
 						<div className="col-sm-10">
@@ -96,7 +77,6 @@ export default class Registration extends React.Component {
 	};
 
 	displayEmailError = () => {
-		//var emailErrAr = this.state.emailErrors;
 		return (
 			<p className="email-error error">{this.state.emailErrors}</p>
 		)
@@ -106,16 +86,12 @@ export default class Registration extends React.Component {
 		var pwd = document.getElementById('pwd');
 		var pwdErrorsAr = [];
 
-		console.log('pwd event listener');
+		//console.log('pwd event listener');
 		if (pwd.value.match(/[A-Z]/g)) {
-			
-		//pwd.setCustomValidity("Email address should contain a '@' and '.' characters.");
 		} else {
 			pwdErrorsAr.push('Password should contain at least one upper-case letter');
 		}
 		if (pwd.value.match(/\d/g)) {
-			
-		//pwd.setCustomValidity("Email address should contain a '@' and '.' characters.");
 		} else {
 			pwdErrorsAr.push('Password should contain at least one number');
 		}
@@ -137,23 +113,22 @@ export default class Registration extends React.Component {
 			this.setState({isPwdValid: false, pwdErrors: pwdErrorsAr})
 			pwd.setCustomValidity(pwdErrorsAr.join('. '));
 		}
-		console.log('pwdErrorsAr: ' + pwdErrorsAr);
+		//console.log('pwdErrorsAr: ' + pwdErrorsAr);
 	};
 
+//TODO refactor this logic with function above
+//NOTE to REVIEWER I would have liked to just validate pwd input 1 and verify that both passwords are matching
+//this should ensure that both passwords end up with valid values IMO
 	validatePwd2 = (e) => {
 		var pwd2 = document.getElementById('pwd2');
 		var pwdErrorsAr2 = [];
 
-		console.log('pwd event listener');
+		//console.log('pwd event listener');
 		if (pwd2.value.match(/[A-Z]/g)) {
-			
-		//pwd.setCustomValidity("Email address should contain a '@' and '.' characters.");
 		} else {
 			pwdErrorsAr2.push('Password should contain at least one upper-case letter');
 		}
 		if (pwd2.value.match(/\d/g)) {
-			
-		//pwd.setCustomValidity("Email address should contain a '@' and '.' characters.");
 		} else {
 			pwdErrorsAr2.push('Password should contain at least one number');
 		}
@@ -175,8 +150,7 @@ export default class Registration extends React.Component {
 			this.setState({isPwd2Valid: false, pwd2Errors: pwdErrorsAr2})
 			pwd2.setCustomValidity(pwdErrorsAr2.join('. '));
 		}
-		console.log('pwdErrorsAr2: ' + pwdErrorsAr2);
-
+		//console.log('pwdErrorsAr2: ' + pwdErrorsAr2);
 	};
 
 	displayPwdError = () => {
@@ -198,9 +172,8 @@ export default class Registration extends React.Component {
 	};
 
 	displayPwdMatchError = () => {
-		//let pwdMatchErr = this.state.pwdErrors;
 		return (
-				<p className="pwd-match-error error">{this.state.passwordsMatchError}</p>
+			<p className="pwd-match-error error">{this.state.passwordsMatchError}</p>
 		)
 	};
 
@@ -217,16 +190,18 @@ export default class Registration extends React.Component {
 	}
 
 	validateForm = () => {
+//NOTE to REVIEWER, moved check for passwords here b/c had difficulty troubleshooting removal of mismatched
+//passwords error message when the issue was resolved on password input change (might have been bad js logic)
 		this.passwordsMatch();
 
 		if ( this.state.isEmailValid && this.state.isPwdValid && this.state.isPwd2Valid && this.state.passwordsMatch) {
-			//fields are valid, submit form and save data
+//TODO
+			//fields are valid, submit form and save to data store
 			console.log('submitting form and saving data');
 		} else {
 			//don't submit form
 			console.log('cannot submit form. fix validation errors first');
 		}
 	}
-
 
 }
