@@ -76,7 +76,7 @@ export default class Registration extends React.Component {
 						</div>
 						<div className="col-md-4 text-center">
 {/* TODO want to final validation onSubmit, if all inputs valid save record to firebase*/}
-							<button className="btn btn-primary" id="register-submit" onClick={this.passwordsMatch} type="button">Save</button>
+							<button className="btn btn-primary" id="register-submit" onClick={this.validateForm} type="button">Save</button>
 						</div>
 					</form>
 				</div>
@@ -145,18 +145,6 @@ export default class Registration extends React.Component {
 		console.log('pwdErrorsAr: ' + pwdErrorsAr);
 	};
 
-	passwordsMatch = () => {
-		let pwd = document.getElementById('pwd');
-		let pwd2 = document.getElementById('pwd2');
-
-		if (pwd.value === pwd2.value) {
-			this.setState({passwordsMatch: true, passwordsMatchError: null});
-		} else {
-			this.setState({passwordsMatch: false, passwordsMatchError: 'Passwords are not matching. Check for typos'});
-		}
-
-	}
-
 	validatePwd2 = (e) => {
 		var pwd2 = document.getElementById('pwd2');
 		var pwdErrorsAr2 = [];
@@ -214,11 +202,36 @@ export default class Registration extends React.Component {
 		)
 	};
 
-
 	displayPwdMatchError = () => {
 		//let pwdMatchErr = this.state.pwdErrors;
 		return (
 				<p className="pwd-match-error error">{this.state.passwordsMatchError}</p>
 		)
 	};
+
+	passwordsMatch = () => {
+		let pwd = document.getElementById('pwd');
+		let pwd2 = document.getElementById('pwd2');
+
+		if (pwd.value === pwd2.value) {
+			this.setState({passwordsMatch: true, passwordsMatchError: null});
+		} else {
+			this.setState({passwordsMatch: false, passwordsMatchError: 'Passwords are not matching. Check for typos'});
+		}
+
+	}
+
+	validateForm = () => {
+		this.passwordsMatch();
+
+		if ( this.state.isEmailValid && this.state.isPwdValid && this.state.isPwd2Valid && this.state.passwordsMatch) {
+			//fields are valid, submit form and save data
+			console.log('submitting form and saving data');
+		} else {
+			//don't submit form
+			console.log('cannot submit form. fix validation errors first');
+		}
+	}
+
+
 }
