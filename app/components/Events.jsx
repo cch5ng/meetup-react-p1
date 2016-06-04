@@ -9,12 +9,10 @@ import uuid from 'node-uuid';
 
 export default ({events, onDelete, onEdit}) => {
 	return (
-		<div>Events</div>
+		<div className="">
+			{events.map(event =>
+				<Event key={event.key} name={event.name} type={event.type} location={event.location} host={event.host} startDate={event.startDate} endDate={event.endDate} msg={event.msg} guests={event.guests} />
+			)}
+		</div>
 	)
 }
-
-		{/*<div className="recipeList">
-			{events.map(event =>
-				<Event key={event.key} name={event.name} onDelete={onDelete.bind(null, event.key)} />
-			)}
-		</div>*/}
