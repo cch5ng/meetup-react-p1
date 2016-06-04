@@ -93,7 +93,6 @@ export default class AddEvent extends React.Component {
 									<input type="text" id="location" className="form-control" name="location" placeholder="(optional) Venue name" />
 								</div>
 							</div>
-{/* TODO fill in autoComplete */}
 							<div className="form-group">
 								<label htmlFor="add1" className="col-sm-2 control-label">Street Address</label>
 								<div className="col-sm-10">

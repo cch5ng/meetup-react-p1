@@ -20,18 +20,33 @@ export default class Event extends React.Component {
 		// let ingredientsStr = this.convertIngredientToString(this.props.ingredients);
 
 		this.state = {
-			isOpen: false,
-			// name: this.props.name,
-			// ingredients: this.props.ingredients,
-			// ingredientsStr: ingredientsStr,
-			// steps: this.props.steps,
-			// stepsStr: stepsStr
+			name: this.props.name,
+			type: this.props.type,
+			startDate: this.props.startDate,
+			endDate: this.props.endDate,
+			location: this.props.location,
+			msg: this.props.msg,
+			guests: this.props.guests
 		}
 	}
 
 	render() {
 		return (
-			<div>Event</div>
+			<div>
+				<details>
+					<summary>
+						<b>Event</b> {this.state.name} ({this.state.startDate})
+					</summary>
+					<ul>
+						<li><b>Type</b> {this.state.type}</li>
+						<li><b>Host</b> {this.state.host}</li>
+						<li><b>Date</b> {this.state.startDate} - {this.state.endDate}</li>
+						<li><b>Location</b> {this.state.location}</li>
+						<li><b>Message from Host</b> {this.state.msg}</li>
+						<li><b>Guests</b> {this.state.guests}</li>
+					</ul>
+				</details>
+			</div>
 
 		);
 	}
