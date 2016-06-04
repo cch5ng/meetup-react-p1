@@ -15,8 +15,13 @@ require("!style!css!sass!./main.scss");
 
 var css = require("!css!sass!./main.scss");
 
+// custom creation fn to pass down store as props to every component
+var createElement = function (Component, props) {
+	return <Component store={store} {...props} />
+};
+
 ReactDOM.render((
-	<Router history={browserHistory}>
+	<Router history={browserHistory} createElement={createElement} >
 		<Route path='/' component={App}>
 			<IndexRoute component={Home}/>
 			<Route path='/addEvent' component={AddEvent} />
