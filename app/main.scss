@@ -189,3 +189,13 @@ input {
 .footer {
 	padding-top: 30px;
 }
+
+@media (min-width: 768px) {
+	//overwrite bootstrap
+
+	.btn-block {
+		width: 200px;
+		display: inline-block;
+		text-align: center;
+	}
+}
