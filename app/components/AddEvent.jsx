@@ -62,13 +62,15 @@ export default class AddEvent extends React.Component {
 							<input id="evt-end-date" className="form-control" type="datetime-local" name="evt-end-date" required />
 						</div>
 					</div>
-					<div className="checkbox col-sm-10 col-sm-offset-2">
-						<label>
-							<input id="curLocation" type="checkbox" defaultChecked onChange={this.toggleGeolocation} />Use current location
-						</label>
+					<div className="form-group">
+						<div className="col-sm-offset-2 col-sm-10">
+							<div className="checkbox">
+								<label>
+									<input type="checkbox" id="curLocation" defaultChecked onChange={this.toggleGeolocation} /> Use current location
+								</label>
+							</div>
+						</div>
 					</div>
-					<br /><br />
-
 					<div className="add-group">
 						<div className="form-group">
 							<label htmlFor="venue" className="col-sm-2 control-label">Venue</label>
