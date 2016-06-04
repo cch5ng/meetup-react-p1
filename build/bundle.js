@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "292c94dafc4302f242b3"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "4de02f56bbf3740b51b1"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -594,6 +594,8 @@
 
 	'use strict';
 
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; //app/index.jsx
+
 	var _react = __webpack_require__(2);
 
 	var _react2 = _interopRequireDefault(_react);
@@ -631,13 +633,18 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	//import Recipes from './components/Recipes.jsx';
-	__webpack_require__(505); //app/index.jsx
+	__webpack_require__(505);
 
 	var css = __webpack_require__(506);
 
+	// custom creation fn to pass down store as props to every component
+	var createElement = function createElement(Component, props) {
+		return _react2.default.createElement(Component, _extends({ store: store }, props));
+	};
+
 	_reactDom2.default.render(_react2.default.createElement(
 		_reactRouter.Router,
-		{ history: _reactRouter.browserHistory },
+		{ history: _reactRouter.browserHistory, createElement: createElement },
 		_react2.default.createElement(
 			_reactRouter.Route,
 			{ path: '/', component: _App2.default },
@@ -43468,6 +43475,9 @@
 	Object.defineProperty(exports, "__esModule", {
 		value: true
 	});
+	exports.default = undefined;
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 	var _react = __webpack_require__(2);
 
@@ -43479,31 +43489,96 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } //app/components/Events.jsx
+
+	//import Event from './Event.jsx';
+
+
 	//import {Modal} from 'react-bootstrap';
 	//import {Button} from 'react-bootstrap';
 	//import {Input} from 'react-bootstrap';
 
-	//app/components/Events.jsx
+	var Events = function (_React$Component) {
+		_inherits(Events, _React$Component);
 
-	exports.default = function (_ref) {
-		var events = _ref.events;
-		var onDelete = _ref.onDelete;
-		var onEdit = _ref.onEdit;
+		function Events(props) {
+			_classCallCheck(this, Events);
 
-		return _react2.default.createElement(
-			'div',
-			null,
-			'Events'
-		);
-	};
-	//import Event from './Event.jsx';
+			//everything could be calculated from uid and dob
+
+			var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Events).call(this));
+
+			_this.state = {
+				events: [{ "key": "id0001",
+					"name": "Birthday",
+					"type": "social",
+					"host": "Annie",
+					"startDate": 1465135200000,
+					"endDate": 1465142400000,
+					"add1": "10899 Wilshire Boulevard",
+					"city": "Los Angeles",
+					"zip": "90024",
+					"note": "Potluck. No need to bring gifts. Email annieRUok@m.com for questions.",
+					"guests": ["g1", "g2", "g3"]
+				}, { "key": "id0002",
+					"name": "Anniversary",
+					"type": "social",
+					"host": "Bill",
+					"startDate": 1465135200000,
+					"endDate": 1465142400000,
+					"add1": "605 North Harbor Drive",
+					"city": "Redondo Beach",
+					"zip": "90277",
+					"note": "Come celebrate the 10th anniversary of our meetup. Potluck.",
+					"guests": ["g11", "g12", "g13"]
+				}, { "key": "id0003",
+					"name": "Networking",
+					"type": "work",
+					"host": "Bobbie",
+					"startDate": 1465135200000,
+					"endDate": 1465142400000,
+					"add1": "601 Santa Monica Blvd.",
+					"city": "Santa Monica",
+					"zip": "90401",
+					"note": "Networking and lightning talks. Contact bobbieb@m.com to sign up for a talk.",
+					"guests": ["g21", "g22", "g23"]
+				}]
+			};
+			return _this;
+		}
+
+		_createClass(Events, [{
+			key: 'render',
+			value: function render() {
+				_react2.default.createElement(
+					'div',
+					{ className: '' },
+					this.state.events.map(function (event) {
+						return _react2.default.createElement(Event, { key: event.key, name: event.name, type: event.type, location: event.location, host: event.host, startDate: event.startDate, endDate: event.endDate, msg: event.msg, guests: event.guests });
+					})
+				);
+			}
+		}]);
+
+		return Events;
+	}(_react2.default.Component);
+
+	// export default ({events, onDelete, onEdit}) => {
+	// 	return (
+	// 		<div className="">
+	// 			{events.map(event =>
+	// 				<Event key={event.key} name={event.name} type={event.type} location={event.location} host={event.host} startDate={event.startDate} endDate={event.endDate} msg={event.msg} guests={event.guests} />
+	// 			)}
+	// 		</div>
+	// 	)
+	// }
 
 
-	{/*<div className="recipeList">
-	 {events.map(event =>
-	 	<Event key={event.key} name={event.name} onDelete={onDelete.bind(null, event.key)} />
-	 )}
-	 </div>*/}
+	exports.default = Events;
 
 /***/ },
 /* 442 */
@@ -43559,23 +43634,113 @@
 			var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Event).call(this, props));
 
 			_this.state = {
-				isOpen: false
+				name: _this.props.name,
+				type: _this.props.type,
+				startDate: _this.props.startDate,
+				endDate: _this.props.endDate,
+				location: _this.props.location,
+				msg: _this.props.msg,
+				guests: _this.props.guests
 			};
 			return _this;
 		}
 
 		_createClass(Event, [{
 			key: 'render',
-			// name: this.props.name,
-			// ingredients: this.props.ingredients,
-			// ingredientsStr: ingredientsStr,
-			// steps: this.props.steps,
-			// stepsStr: stepsStr
 			value: function render() {
 				return _react2.default.createElement(
 					'div',
 					null,
-					'Event'
+					_react2.default.createElement(
+						'details',
+						null,
+						_react2.default.createElement(
+							'summary',
+							null,
+							_react2.default.createElement(
+								'b',
+								null,
+								'Event'
+							),
+							' ',
+							this.state.name,
+							' (',
+							this.state.startDate,
+							')'
+						),
+						_react2.default.createElement(
+							'ul',
+							null,
+							_react2.default.createElement(
+								'li',
+								null,
+								_react2.default.createElement(
+									'b',
+									null,
+									'Type'
+								),
+								' ',
+								this.state.type
+							),
+							_react2.default.createElement(
+								'li',
+								null,
+								_react2.default.createElement(
+									'b',
+									null,
+									'Host'
+								),
+								' ',
+								this.state.host
+							),
+							_react2.default.createElement(
+								'li',
+								null,
+								_react2.default.createElement(
+									'b',
+									null,
+									'Date'
+								),
+								' ',
+								this.state.startDate,
+								' - ',
+								this.state.endDate
+							),
+							_react2.default.createElement(
+								'li',
+								null,
+								_react2.default.createElement(
+									'b',
+									null,
+									'Location'
+								),
+								' ',
+								this.state.location
+							),
+							_react2.default.createElement(
+								'li',
+								null,
+								_react2.default.createElement(
+									'b',
+									null,
+									'Message from Host'
+								),
+								' ',
+								this.state.msg
+							),
+							_react2.default.createElement(
+								'li',
+								null,
+								_react2.default.createElement(
+									'b',
+									null,
+									'Guests'
+								),
+								' ',
+								this.state.guests
+							)
+						)
+					)
 				);
 			}
 		}]);
@@ -43633,20 +43798,92 @@
 		function AddEvent(props) {
 			_classCallCheck(this, AddEvent);
 
-			// let stepsStr = this.convertStepToString(this.props.steps);
-			// let ingredientsStr = this.convertIngredientToString(this.props.ingredients);
-
 			var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(AddEvent).call(this, props));
 
+			_this.getGeolocation = function () {
+				var that = _this;
+				var geoLocationChk = document.getElementById('curLocation');
+				var myInit = { method: 'GET',
+					mode: 'cors',
+					cache: 'default' };
+				//check geolocation
+				var reverseGeoCodeUrl = 'https://maps.googleapis.com/maps/api/geocode/json?latlng=';
+				var lat, long, geoAdd1, geoCity, geoZip;
+				//array representation of geolocation (add1, city, zip)
+				var geoAddFullAr = [];
+				var results;
+
+				if ("geolocation" in navigator) {
+					console.log('geolocation supported');
+					navigator.geolocation.getCurrentPosition(function (position) {
+						lat = position.coords.latitude;
+						long = ',' + position.coords.longitude;
+						reverseGeoCodeUrl += lat + long;
+
+						$.ajax(reverseGeoCodeUrl).done(function (data) {
+							//if (data) {
+							results = data['results'][0]['address_components'];
+							geoAdd1 = results[0]['short_name'] + ' ' + results[1]['short_name'];
+							console.log('geoAdd1: ' + geoAdd1);
+							geoCity = results[2]['short_name'];
+							console.log('geoCity: ' + geoCity);
+							geoZip = results[6]['short_name'];
+							//geoAddFullAr.push(geoZip);
+							console.log('geoZip: ' + geoZip);
+
+							this.setState({
+								geoLocationChecked: true,
+								geoAdd1: geoAdd1,
+								geoCity: geoCity,
+								geoZip: geoZip
+							});
+							console.log('this: ' + this);
+							console.log('state geoAdd1: ' + this.state.geoLocationChecked);
+							//}
+						}.bind(that)).fail(function (jqXHR, textStatus, errorThrown) {
+							console.log('err: ' + errorThrown);
+						}.bind(that));
+					}, function (error) {
+						console.log('sorry, unable to retrieve location');
+					});
+				}
+			};
+
+			_this.toggleGeolocation = function () {
+				if (_this.state.geoLocationChecked) {
+					_this.setState({
+						geoLocationChecked: false,
+						geoAdd1: '',
+						geoCity: '',
+						geoZip: ''
+					});
+				} else {
+					_this.setState({
+						geoLocationChecked: true
+					});
+					_this.getGeolocation();
+				}
+			};
+
 			_this.state = {
-				isOpen: false
+				geoLocationChecked: false,
+				geoAddressFull: '',
+				geoAdd1: '',
+				geoCity: '',
+				geoZip: ''
 			};
 			return _this;
 		}
 
 		_createClass(AddEvent, [{
+			key: 'componentDidMount',
+			value: function componentDidMount() {
+				this.getGeolocation();
+			}
+		}, {
 			key: 'render',
 			value: function render() {
+
 				return _react2.default.createElement(
 					'div',
 					{ className: 'container' },
@@ -43701,20 +43938,6 @@
 								{ className: 'form-group' },
 								_react2.default.createElement(
 									'label',
-									{ htmlFor: 'evt-host', className: 'col-sm-2 control-label' },
-									'Host'
-								),
-								_react2.default.createElement(
-									'div',
-									{ className: 'col-sm-10' },
-									_react2.default.createElement('input', { type: 'text', id: 'evt-host', className: 'form-control', name: 'evt-host', required: true })
-								)
-							),
-							_react2.default.createElement(
-								'div',
-								{ className: 'form-group' },
-								_react2.default.createElement(
-									'label',
 									{ htmlFor: 'evt-start-date', className: 'col-sm-2 control-label' },
 									'Start Date/Time'
 								),
@@ -43744,7 +43967,7 @@
 								_react2.default.createElement(
 									'label',
 									null,
-									_react2.default.createElement('input', { id: 'curLocation', type: 'checkbox', defaultChecked: true }),
+									_react2.default.createElement('input', { id: 'curLocation', type: 'checkbox', defaultChecked: true, onChange: this.toggleGeolocation }),
 									'Use current location'
 								)
 							),
@@ -43752,7 +43975,7 @@
 							_react2.default.createElement('br', null),
 							_react2.default.createElement(
 								'div',
-								{ className: 'add-group', hidden: true },
+								{ className: 'add-group' },
 								_react2.default.createElement(
 									'div',
 									{ className: 'form-group' },
@@ -43764,7 +43987,7 @@
 									_react2.default.createElement(
 										'div',
 										{ className: 'col-sm-10' },
-										_react2.default.createElement('input', { type: 'text', id: 'location', className: 'form-control', name: 'location' })
+										_react2.default.createElement('input', { type: 'text', id: 'location', className: 'form-control', name: 'location', placeholder: '(optional) Venue name' })
 									)
 								),
 								_react2.default.createElement(
@@ -43778,7 +44001,7 @@
 									_react2.default.createElement(
 										'div',
 										{ className: 'col-sm-10' },
-										_react2.default.createElement('input', { type: 'text', id: 'add1', className: 'form-control', name: 'add1', required: true, autoComplete: '' })
+										_react2.default.createElement('input', { type: 'text', id: 'add1', className: 'form-control', name: 'address', required: true, autoComplete: 'street-address', value: this.state.geoAdd1 })
 									)
 								),
 								_react2.default.createElement(
@@ -43792,7 +44015,7 @@
 									_react2.default.createElement(
 										'div',
 										{ className: 'col-sm-10' },
-										_react2.default.createElement('input', { type: 'text', id: 'city', className: 'form-control', name: 'city', required: true, autoComplete: '' })
+										_react2.default.createElement('input', { type: 'text', id: 'city', className: 'form-control', name: 'province', required: true, autoComplete: 'address-level2', value: this.state.geoCity })
 									)
 								),
 								_react2.default.createElement(
@@ -43806,7 +44029,7 @@
 									_react2.default.createElement(
 										'div',
 										{ className: 'col-sm-10' },
-										_react2.default.createElement('input', { type: 'number', id: 'zip', className: 'form-control', name: 'zip', required: true, autoComplete: '' })
+										_react2.default.createElement('input', { type: 'number', id: 'zip', className: 'form-control', name: 'state', required: true, autoComplete: 'postal-code', value: this.state.geoZip })
 									)
 								)
 							),
@@ -43821,7 +44044,7 @@
 								_react2.default.createElement(
 									'div',
 									{ className: 'col-sm-10' },
-									_react2.default.createElement('input', { type: 'text', id: 'event-msg', className: 'form-control', name: 'event-msg' })
+									_react2.default.createElement('input', { type: 'text', id: 'event-msg', className: 'form-control', name: 'event-msg', placeholder: '(optional)' })
 								)
 							),
 							_react2.default.createElement(
@@ -43835,18 +44058,25 @@
 								_react2.default.createElement(
 									'div',
 									{ className: 'col-sm-10' },
-									_react2.default.createElement('textarea', { id: 'event-guests', className: 'form-control', placeholder: 'Separate guests with a new line.' })
+									_react2.default.createElement('textarea', { id: 'event-guests', className: 'form-control', placeholder: '(optional) Separate guests with a new line' })
 								)
 							),
 							_react2.default.createElement(
-								'button',
-								{ className: 'btn btn-primary col-sm-2', id: 'submit', type: 'submit' },
-								'Save'
+								'div',
+								{ className: 'col-md-4 center-block' },
+								_react2.default.createElement(
+									'button',
+									{ className: 'btn btn-primary col-sm-2', id: 'event-submit', type: 'submit' },
+									'Save'
+								)
 							)
 						)
 					)
 				);
 			}
+
+			//helpers
+
 		}]);
 
 		return AddEvent;
@@ -49318,8 +49548,163 @@
 
 			var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Registration).call(this, props));
 
+			_this.validateEmail = function (e) {
+				console.log('email event handler');
+				var email = document.getElementById('email');
+
+				if (email.value.match(/\w+@\w+.\w+/g)) {
+					_this.setState({ isEmailValid: true, emailErrors: '' });
+					email.setCustomValidity('');
+					console.log('isEmailValid: ' + _this.state.isEmailValid);
+				} else {
+					_this.setState({ isEmailValid: false, emailErrors: 'Email address should have the format: name@mail.com' });
+					email.setCustomValidity("Email address should have the format: name@mail.com");
+					console.log('isEmailValid: ' + _this.state.isEmailValid);
+				}
+			};
+
+			_this.displayEmailError = function () {
+				//var emailErrAr = this.state.emailErrors;
+				return _react2.default.createElement(
+					'p',
+					{ className: 'email-error error' },
+					_this.state.emailErrors
+				);
+			};
+
+			_this.validatePwd = function (e) {
+				var pwd = document.getElementById('pwd');
+				var pwdErrorsAr = [];
+
+				console.log('pwd event listener');
+				if (pwd.value.match(/[A-Z]/g)) {
+
+					//pwd.setCustomValidity("Email address should contain a '@' and '.' characters.");
+				} else {
+						pwdErrorsAr.push('Password should contain at least one upper-case letter');
+					}
+				if (pwd.value.match(/\d/g)) {
+
+					//pwd.setCustomValidity("Email address should contain a '@' and '.' characters.");
+				} else {
+						pwdErrorsAr.push('Password should contain at least one number');
+					}
+
+				//less than 8 chars
+				if (pwd.value.length < 8) {
+					pwdErrorsAr.push('Password needs 8 or more characters');
+				}
+
+				//contains special char
+				if (!pwd.value.match(/[\!\@\#\$\%\^\&\*]/g)) {
+					pwdErrorsAr.push('Password needs a special character: !, @, #, $, %, ^, & or *');
+				}
+
+				if (pwdErrorsAr.length === 0) {
+					_this.setState({ isPwdValid: true, pwdErrors: [] });
+					pwd.setCustomValidity('');
+				} else {
+					_this.setState({ isPwdValid: false, pwdErrors: pwdErrorsAr });
+					pwd.setCustomValidity(pwdErrorsAr.join('. '));
+				}
+				console.log('pwdErrorsAr: ' + pwdErrorsAr);
+			};
+
+			_this.passwordsMatch = function () {
+				var pwd = document.getElementById('pwd');
+				var pwd2 = document.getElementById('pwd2');
+
+				if (pwd.value === pwd2.value) {
+					_this.setState({ passwordsMatch: true, passwordsMatchError: null });
+				} else {
+					_this.setState({ passwordsMatch: false, passwordsMatchError: 'Passwords are not matching. Check for typos' });
+				}
+			};
+
+			_this.validatePwd2 = function (e) {
+				var pwd2 = document.getElementById('pwd2');
+				var pwdErrorsAr2 = [];
+
+				console.log('pwd event listener');
+				if (pwd2.value.match(/[A-Z]/g)) {
+
+					//pwd.setCustomValidity("Email address should contain a '@' and '.' characters.");
+				} else {
+						pwdErrorsAr2.push('Password should contain at least one upper-case letter');
+					}
+				if (pwd2.value.match(/\d/g)) {
+
+					//pwd.setCustomValidity("Email address should contain a '@' and '.' characters.");
+				} else {
+						pwdErrorsAr2.push('Password should contain at least one number');
+					}
+
+				//less than 8 chars
+				if (pwd2.value.length < 8) {
+					pwdErrorsAr2.push('Password needs 8 or more characters');
+				}
+
+				//contains special char
+				if (!pwd2.value.match(/[\!\@\#\$\%\^\&\*]/g)) {
+					pwdErrorsAr2.push('Password needs a special character: !, @, #, $, %, ^, & or *');
+				}
+
+				if (pwdErrorsAr2.length === 0) {
+					_this.setState({ isPwd2Valid: true, pwd2Errors: [] });
+					pwd2.setCustomValidity('');
+				} else {
+					_this.setState({ isPwd2Valid: false, pwd2Errors: pwdErrorsAr2 });
+					pwd2.setCustomValidity(pwdErrorsAr2.join('. '));
+				}
+				console.log('pwdErrorsAr2: ' + pwdErrorsAr2);
+			};
+
+			_this.displayPwdError = function () {
+				var pwdErrors = _this.state.pwdErrors;
+				return pwdErrors.map(function (err) {
+					return _react2.default.createElement(
+						'p',
+						{ className: 'pwd-error error' },
+						err
+					);
+				});
+			};
+
+			_this.displayPwd2Error = function () {
+				var pwd2Errors = _this.state.pwd2Errors;
+				return pwd2Errors.map(function (err) {
+					return _react2.default.createElement(
+						'p',
+						{ className: 'pwd-error error' },
+						err
+					);
+				});
+			};
+
+			_this.displayPwdMatchError = function () {
+				//let pwdMatchErr = this.state.pwdErrors;
+				return _react2.default.createElement(
+					'p',
+					{ className: 'pwd-match-error error' },
+					_this.state.passwordsMatchError
+				);
+			};
+
 			_this.state = {
-				isOpen: false
+				isOpen: false,
+				isEmailValid: true,
+				emailErrors: null,
+				isPwdValid: true,
+				pwdErrors: [],
+				isPwd2Valid: true,
+				pwd2Errors: [],
+				passwordsMatch: true,
+				passwordsMatchError: null
+				// name: this.props.name,
+				// ingredients: this.props.ingredients,
+				// ingredientsStr: ingredientsStr,
+				// steps: this.props.steps,
+				// stepsStr: stepsStr
 			};
 			return _this;
 		}
@@ -49341,7 +49726,7 @@
 						),
 						_react2.default.createElement(
 							'form',
-							{ className: 'form-horizontal' },
+							{ className: 'form-horizontal', id: 'reg-form' },
 							_react2.default.createElement(
 								'div',
 								{ className: 'form-group' },
@@ -49367,7 +49752,8 @@
 								_react2.default.createElement(
 									'div',
 									{ className: 'col-md-10' },
-									_react2.default.createElement('input', { id: 'email', className: 'form-control', name: 'email', type: 'email', required: true, autoComplete: 'email', placeholder: 'name@example.com' })
+									_react2.default.createElement('input', { id: 'email', className: 'form-control', name: 'email', type: 'email', onChange: this.validateEmail, required: true, autoComplete: 'email', placeholder: 'name@example.com' }),
+									this.state.isEmailValid ? null : this.displayEmailError()
 								)
 							),
 							_react2.default.createElement(
@@ -49381,7 +49767,8 @@
 								_react2.default.createElement(
 									'div',
 									{ className: 'col-md-10' },
-									_react2.default.createElement('input', { id: 'pwd', className: 'form-control', name: 'pwd', type: 'password', required: true, autoComplete: 'new-password' })
+									_react2.default.createElement('input', { id: 'pwd', className: 'form-control', name: 'pwd', type: 'password', onChange: this.validatePwd, placeholder: '>= 8 chars, 1 num, 1 CAP, 1 special char', required: true }),
+									this.state.isPwdValid ? null : this.displayPwdError()
 								)
 							),
 							_react2.default.createElement(
@@ -49395,7 +49782,9 @@
 								_react2.default.createElement(
 									'div',
 									{ className: 'col-md-10' },
-									_react2.default.createElement('input', { id: 'pwd2', className: 'form-control', name: 'pwd2', type: 'password', required: true })
+									_react2.default.createElement('input', { id: 'pwd2', className: 'form-control', name: 'pwd2', type: 'password', onChange: this.validatePwd2, placeholder: '>= 8 chars, 1 num, 1 CAP, 1 special char', required: true }),
+									this.state.isPwd2Valid ? null : this.displayPwd2Error(),
+									this.state.passwordsMatch ? null : this.displayPwdMatchError()
 								)
 							),
 							_react2.default.createElement(
@@ -49403,7 +49792,7 @@
 								{ className: 'col-md-4 text-center' },
 								_react2.default.createElement(
 									'button',
-									{ className: 'btn btn-primary', id: 'submit', type: 'submit' },
+									{ className: 'btn btn-primary', id: 'register-submit', onClick: this.passwordsMatch, type: 'button' },
 									'Save'
 								)
 							)
@@ -49453,7 +49842,7 @@
 
 
 	// module
-	exports.push([module.id, "/* app/main.scss */\nbody {\n  background: #f6fafa; }\n\n.navbar navbar-default {\n  border-width: 0;\n  border-radius: none; }\n\n.navbar {\n  background-color: #d6279a; }\n\n.nav-logo {\n  width: 269px;\n  margin-top: -5px; }\n\n.navbar-default .navbar-brand {\n  color: #003333; }\n\n.navbar-brand {\n  font-family: 'Raleway', sans-serif;\n  font-size: 1.65em;\n  font-weight: 500; }\n\n.btn-danger {\n  color: #000; }\n\n.btn-default {\n  background-color: #e5e5e5; }\n\nbutton {\n  margin-right: 8px; }\n\n.modal-container {\n  position: relative; }\n\n.modal-container .modal, .modal-container .modal-backdrop {\n  position: absolute; }\n\n.center {\n  text-align: center; }\n\n.clear {\n  clear: both; }\n\n.hidden {\n  display: none; }\n\n.recipe {\n  width: 80%;\n  background-color: #96ceb4;\n  border: 1px solid grey;\n  border-radius: 3px;\n  margin: 5px auto;\n  padding-left: 10px; }\n\n.h5 {\n  text-align: center; }\n\n.padding {\n  padding-bottom: 40px; }\n\n.ingredientList {\n  width: 90%;\n  background-color: #f6fafa;\n  border: 1px solid grey;\n  border-radius: 3px;\n  margin-bottom: 5px;\n  margin: 0 auto; }\n\n.ingredient {\n  border-bottom: 1px solid grey;\n  padding: 5px 10px; }\n\n.button-section {\n  padding-top: 8px; }\n\n.buttons {\n  float: left;\n  list-style: none;\n  margin-right: 5px; }\n\n.btn-add {\n  margin-left: 10%; }\n\ninput {\n  width: 200px; }\n\n.avatar {\n  width: 28px;\n  border-radius: 3px; }\n\n.dynamic-header {\n  color: #21586b;\n  text-decoration: underline; }\n\n.fa-caret-down {\n  text-decoration: underline; }\n\n.fa-heart {\n  color: #d6279a; }\n\n.hide-fa {\n  display: none; }\n\n.fixedDataTableLayout_main {\n  margin: 0 auto; }\n\n.footer {\n  padding-top: 30px; }\n", ""]);
+	exports.push([module.id, "/* app/main.scss */\nbody {\n  background: #f6fafa; }\n\n.navbar navbar-default {\n  border-width: 0;\n  border-radius: none; }\n\n.navbar-default .navbar-nav > li > a {\n  color: #000; }\n\n.navbar {\n  background-color: #d6279a; }\n\n.nav-logo {\n  width: 269px;\n  margin-top: -5px; }\n\n.navbar-default .navbar-brand {\n  color: #003333; }\n\n.navbar-brand {\n  font-family: 'Raleway', sans-serif;\n  font-size: 1.65em;\n  font-weight: 500; }\n\n.btn-danger {\n  color: #000; }\n\n.btn-default {\n  background-color: #e5e5e5; }\n\nbutton {\n  margin-right: 8px; }\n\ninput:invalid {\n  border: 1px solid #951b6b; }\n\ninput:valid {\n  border: 1px solid #048D7C; }\n\n/* This is the style of our error messages */\n.error {\n  width: 100%;\n  min-height: 25px;\n  padding: 0;\n  font-size: 80%;\n  color: white;\n  background-color: #6b134d;\n  border-radius: 0 0 5px 5px;\n  -moz-box-sizing: border-box;\n  box-sizing: border-box; }\n\n.error.active {\n  padding: 0.3em; }\n\n.modal-container {\n  position: relative; }\n\n.modal-container .modal, .modal-container .modal-backdrop {\n  position: absolute; }\n\n.center {\n  text-align: center; }\n\n.clear {\n  clear: both; }\n\n.hidden {\n  display: none; }\n\n.recipe {\n  width: 80%;\n  background-color: #96ceb4;\n  border: 1px solid grey;\n  border-radius: 3px;\n  margin: 5px auto;\n  padding-left: 10px; }\n\n.h5 {\n  text-align: center; }\n\n.padding {\n  padding-bottom: 40px; }\n\n.ingredientList {\n  width: 90%;\n  background-color: #f6fafa;\n  border: 1px solid grey;\n  border-radius: 3px;\n  margin-bottom: 5px;\n  margin: 0 auto; }\n\n.ingredient {\n  border-bottom: 1px solid grey;\n  padding: 5px 10px; }\n\n.button-section {\n  padding-top: 8px; }\n\n.buttons {\n  float: left;\n  list-style: none;\n  margin-right: 5px; }\n\n.btn-add {\n  margin-left: 10%; }\n\ninput {\n  width: 200px; }\n\n.avatar {\n  width: 28px;\n  border-radius: 3px; }\n\n.dynamic-header {\n  color: #21586b;\n  text-decoration: underline; }\n\n.fa-caret-down {\n  text-decoration: underline; }\n\n.fa-heart {\n  color: #d6279a; }\n\n.hide-fa {\n  display: none; }\n\n.fixedDataTableLayout_main {\n  margin: 0 auto; }\n\n.footer {\n  padding-top: 30px; }\n", ""]);
 
 	// exports
 
