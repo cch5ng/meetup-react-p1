@@ -57,8 +57,7 @@ export default class Events extends React.Component {
 		return (
 			<div className="">
 				{this.state.events.map(event =>
-{/* TODO add location prop */}
-					<Event key={event.key} name={event.name} type={event.type} host={event.host} startDate={event.startDate} endDate={event.endDate} msg={event.msg} guests={event.guests} />
+					<Event key={event.key} name={event.name} type={event.type} host={event.host} add1={event.add1} city={event.city} zip={event.zip} startDate={event.startDate} endDate={event.endDate} msg={event.msg} guests={event.guests} />
 				)}
 			</div>
 		)
