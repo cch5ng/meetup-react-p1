@@ -20132,7 +20132,7 @@
 								_react2.default.createElement(
 									"div",
 									{ className: "col-sm-10" },
-									_react2.default.createElement("input", { id: "email-login", className: "form-control", name: "email-login", type: "email", required: true, autoComplete: "email" })
+									_react2.default.createElement("input", { id: "email-login", className: "form-control", name: "email-login", type: "email", alt: "email address", required: true, autoComplete: "email" })
 								)
 							),
 							_react2.default.createElement(
@@ -20146,7 +20146,7 @@
 								_react2.default.createElement(
 									"div",
 									{ className: "col-sm-10" },
-									_react2.default.createElement("input", { id: "pwd-login", className: "form-control", name: "pwd-login", type: "password", required: true })
+									_react2.default.createElement("input", { id: "pwd-login", className: "form-control", name: "pwd-login", type: "password", alt: "password", required: true })
 								)
 							),
 							_react2.default.createElement(
@@ -20202,17 +20202,11 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } //app/components/Events.jsx
 
-	//import {Modal} from 'react-bootstrap';
-	//import {Button} from 'react-bootstrap';
-	//import {Input} from 'react-bootstrap';
-
 	var Events = function (_React$Component) {
 		_inherits(Events, _React$Component);
 
 		function Events(props) {
 			_classCallCheck(this, Events);
-
-			//everything could be calculated from uid and dob
 
 			var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Events).call(this));
 
@@ -20273,17 +20267,6 @@
 
 		return Events;
 	}(_react2.default.Component);
-
-	// export default ({events, onDelete, onEdit}) => {
-	// 	return (
-	// 		<div className="">
-	// 			{events.map(event =>
-	// 				<Event key={event.key} name={event.name} type={event.type} location={event.location} host={event.host} startDate={event.startDate} endDate={event.endDate} msg={event.msg} guests={event.guests} />
-	// 			)}
-	// 		</div>
-	// 	)
-	// }
-
 
 	exports.default = Events;
 
@@ -20406,7 +20389,7 @@
 						null,
 						_react2.default.createElement(
 							'summary',
-							null,
+							{ className: 'event-heading' },
 							_react2.default.createElement(
 								'b',
 								null,
@@ -20418,10 +20401,10 @@
 						),
 						_react2.default.createElement(
 							'ul',
-							null,
+							{ className: 'event-list' },
 							_react2.default.createElement(
 								'li',
-								null,
+								{ className: 'event-item' },
 								_react2.default.createElement(
 									'b',
 									null,
@@ -20432,7 +20415,7 @@
 							),
 							_react2.default.createElement(
 								'li',
-								null,
+								{ className: 'event-item' },
 								_react2.default.createElement(
 									'b',
 									null,
@@ -20443,7 +20426,7 @@
 							),
 							_react2.default.createElement(
 								'li',
-								null,
+								{ className: 'event-item' },
 								_react2.default.createElement(
 									'b',
 									null,
@@ -20456,7 +20439,7 @@
 							),
 							_react2.default.createElement(
 								'li',
-								null,
+								{ className: 'event-item' },
 								_react2.default.createElement(
 									'b',
 									null,
@@ -20467,7 +20450,7 @@
 							),
 							_react2.default.createElement(
 								'li',
-								null,
+								{ className: 'event-item' },
 								_react2.default.createElement(
 									'b',
 									null,
@@ -20478,7 +20461,7 @@
 							),
 							_react2.default.createElement(
 								'li',
-								null,
+								{ className: 'event-item' },
 								_react2.default.createElement(
 									'b',
 									null,
@@ -20493,6 +20476,32 @@
 			}
 
 			//helpers
+			/**
+	   *@param
+	   *@return
+	   * Combines address related inputs into one string for display.
+	   */
+
+
+			/**
+	   *@param
+	   *@return
+	   * Converts data (milliseconds format) to user friendly date.
+	   */
+
+
+			/**
+	   *@param <str> hours, <str> minutes
+	   *@return <str> time
+	   * Converts time to user friendly format.
+	   */
+
+
+			/**
+	   *@param
+	   *@return
+	   * Converts an array of strings to one string (comma-delimited)
+	   */
 
 		}]);
 
@@ -25480,13 +25489,6 @@
 				}
 			};
 
-			_this.getCurDate = function () {
-				var curDate = new Date();
-				curDate.setHours(curDate.getHours() - 7);
-				//console.log('curDate: ' + curDate);
-				return curDate;
-			};
-
 			_this.validateStartDate = function () {
 				var curDate = new Date();
 				curDate.setHours(curDate.getHours() - 7);
@@ -25640,7 +25642,7 @@
 							_react2.default.createElement(
 								'div',
 								{ className: 'col-sm-10' },
-								_react2.default.createElement('input', { type: 'text', id: 'evt-name', className: 'form-control', name: 'evt-name', placeholder: 'required', required: true })
+								_react2.default.createElement('input', { type: 'text', id: 'evt-name', className: 'form-control', name: 'evt-name', alt: 'event name', placeholder: 'required', required: true })
 							)
 						),
 						_react2.default.createElement(
@@ -25654,7 +25656,7 @@
 							_react2.default.createElement(
 								'div',
 								{ className: 'col-sm-10' },
-								_react2.default.createElement('input', { list: 'evt-type', className: 'form-control', name: 'evt-type' }),
+								_react2.default.createElement('input', { list: 'evt-type', className: 'form-control', name: 'evt-type', alt: 'event type' }),
 								_react2.default.createElement(
 									'datalist',
 									{ id: 'evt-type' },
@@ -25669,13 +25671,27 @@
 							{ className: 'form-group' },
 							_react2.default.createElement(
 								'label',
+								{ htmlFor: 'evt-host', className: 'col-sm-2 control-label' },
+								'Host'
+							),
+							_react2.default.createElement(
+								'div',
+								{ className: 'col-sm-10' },
+								_react2.default.createElement('input', { type: 'text', id: 'evt-host', className: 'form-control', name: 'evt-host', required: true })
+							)
+						),
+						_react2.default.createElement(
+							'div',
+							{ className: 'form-group' },
+							_react2.default.createElement(
+								'label',
 								{ htmlFor: 'evt-start-date', className: 'col-sm-2 control-label' },
 								'Start Date/Time'
 							),
 							_react2.default.createElement(
 								'div',
 								{ className: 'col-sm-10' },
-								_react2.default.createElement('input', { id: 'evt-start-date', className: 'form-control', type: 'datetime-local', name: 'evt-start-date', min: this.getCurDate, onChange: this.validateStartDate, required: true }),
+								_react2.default.createElement('input', { id: 'evt-start-date', className: 'form-control', type: 'datetime-local', name: 'evt-start-date', alt: 'event start date and time', onChange: this.validateStartDate, required: true }),
 								this.state.isStartDateValid ? null : this.displayStartDateError()
 							)
 						),
@@ -25690,7 +25706,7 @@
 							_react2.default.createElement(
 								'div',
 								{ className: 'col-sm-10' },
-								_react2.default.createElement('input', { id: 'evt-end-time', className: 'form-control', type: 'time', name: 'evt-end-time', onChange: this.validateEndTime }),
+								_react2.default.createElement('input', { id: 'evt-end-time', className: 'form-control', type: 'time', name: 'evt-end-time', alt: 'event end time', onChange: this.validateEndTime }),
 								this.state.isEndTimeValid ? null : this.displayEndTimeError()
 							)
 						),
@@ -25706,7 +25722,7 @@
 									_react2.default.createElement(
 										'label',
 										null,
-										_react2.default.createElement('input', { type: 'checkbox', id: 'curLocation', defaultChecked: true, onChange: this.toggleGeolocation }),
+										_react2.default.createElement('input', { type: 'checkbox', id: 'curLocation', alt: 'checkbox to use geolocation for event location', defaultChecked: true, onChange: this.toggleGeolocation }),
 										' Use current location'
 									)
 								)
@@ -25726,7 +25742,7 @@
 								_react2.default.createElement(
 									'div',
 									{ className: 'col-sm-10' },
-									_react2.default.createElement('input', { type: 'text', id: 'venue', className: 'form-control', name: 'venue', placeholder: '(optional)' })
+									_react2.default.createElement('input', { type: 'text', id: 'venue', className: 'form-control', name: 'venue', alt: 'event venue name', placeholder: 'optional' })
 								)
 							),
 							_react2.default.createElement(
@@ -25740,7 +25756,7 @@
 								_react2.default.createElement(
 									'div',
 									{ className: 'col-sm-10' },
-									_react2.default.createElement('input', { type: 'text', id: 'add1', className: 'form-control', name: 'address', required: true, autoComplete: 'street-address', value: this.state.geoAdd1 })
+									_react2.default.createElement('input', { type: 'text', id: 'add1', className: 'form-control', name: 'address', alt: 'event street address', required: true, autoComplete: 'street-address', value: this.state.geoAdd1 })
 								)
 							),
 							_react2.default.createElement(
@@ -25754,7 +25770,7 @@
 								_react2.default.createElement(
 									'div',
 									{ className: 'col-sm-10' },
-									_react2.default.createElement('input', { type: 'text', id: 'city', className: 'form-control', name: 'province', required: true, autoComplete: 'address-level2', value: this.state.geoCity })
+									_react2.default.createElement('input', { type: 'text', id: 'city', className: 'form-control', name: 'province', alt: 'event city', required: true, autoComplete: 'address-level2', value: this.state.geoCity })
 								)
 							),
 							_react2.default.createElement(
@@ -25768,7 +25784,7 @@
 								_react2.default.createElement(
 									'div',
 									{ className: 'col-sm-10' },
-									_react2.default.createElement('input', { type: 'number', id: 'zip', className: 'form-control', name: 'state', required: true, autoComplete: 'postal-code', value: this.state.geoZip })
+									_react2.default.createElement('input', { type: 'number', id: 'zip', className: 'form-control', name: 'state', alt: 'event zip code', required: true, autoComplete: 'postal-code', value: this.state.geoZip })
 								)
 							)
 						),
@@ -25783,7 +25799,7 @@
 							_react2.default.createElement(
 								'div',
 								{ className: 'col-sm-10' },
-								_react2.default.createElement('input', { type: 'text', id: 'event-msg', className: 'form-control', name: 'event-msg', placeholder: '(optional)' })
+								_react2.default.createElement('input', { type: 'text', id: 'event-msg', className: 'form-control', name: 'event-msg', alt: 'note to attendees', placeholder: 'optional' })
 							)
 						),
 						_react2.default.createElement(
@@ -25797,7 +25813,7 @@
 							_react2.default.createElement(
 								'div',
 								{ className: 'col-sm-10' },
-								_react2.default.createElement('textarea', { id: 'event-guests', className: 'form-control', placeholder: '(optional) Separate guests with a new line' })
+								_react2.default.createElement('textarea', { id: 'event-guests', className: 'form-control valid', alt: 'guest list', placeholder: 'optional Separate guests with a new line' })
 							)
 						),
 						_react2.default.createElement(
@@ -25814,9 +25830,87 @@
 			}
 
 			//helpers
+			/**
+	   *@param
+	   *@return
+	   * Use geolocation api to populate location address fields with current location.
+	   */
 
 
+			/**
+	   *@param
+	   *@return
+	   * Handles change on checkbox to use geolocation for form location fields auto completion.
+	   */
+
+
+			/**
+	   *@param
+	   *@return
+	   * 
+	   */
+			// getCurDate = () => {
+			// 	let curDate = new Date();
+			// 	curDate.setHours(curDate.getHours() - 7);
+			// 	//console.log('curDate: ' + curDate);
+			// 	return curDate;
+			// }
+
+			/**
+	   *@param
+	   *@return
+	   * Checks whether the start date/time is after the current date. If the check fails, it sets an error message in state.
+	   */
+
+
+			/**
+	   *@param
+	   *@return
+	   * Displays start date/time validation error.
+	   */
+
+
+			/**
+	   *@param
+	   *@return
+	   * Converts time portion from the start date/time to units minutes. This allows for simplest comparison with the end time.
+	   */
+
+
+			/**
+	   *@param
+	   *@return
+	   * Converts the end time to units minutes. Allows for comparison with the start time.
+	   */
+
+
+			/**
+	   *@param
+	   *@return
+	   * Checks that the end time is later than the start time.
+	   */
+
+
+			/**
+	   *@param
+	   *@return
+	   * If the end time validation fails, displays the error message.
+	   */
+
+
+			/**
+	   *@param
+	   *@return
+	   * Converts string format of guest list to an array.
+	   */
 			//parse guest string input val to array
+
+
+			/**
+	   *@param
+	   *@return
+	   * On form submit, would verify that there are no input errors. If error free, submit form.
+	   */
 
 		}]);
 
@@ -25859,18 +25953,18 @@
 			var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Registration).call(this, props));
 
 			_this.validateEmail = function (e) {
-				console.log('email event handler');
+				//console.log('email event handler');
 				var email = document.getElementById('email');
 
 				if (email.value.match(/\w+@\w+.\w+/g)) {
 					_this.setState({ isEmailValid: true, emailErrors: '' });
 					email.setCustomValidity('');
-					console.log('isEmailValid: ' + _this.state.isEmailValid);
+					//console.log('isEmailValid: ' + this.state.isEmailValid);
 				} else {
-					_this.setState({ isEmailValid: false, emailErrors: 'Email address should have the format: name@mail.com' });
-					email.setCustomValidity("Email address should have the format: name@mail.com");
-					console.log('isEmailValid: ' + _this.state.isEmailValid);
-				}
+						_this.setState({ isEmailValid: false, emailErrors: 'Email address should have the format: name@mail.com' });
+						email.setCustomValidity("Email address should have the format: name@mail.com");
+						//console.log('isEmailValid: ' + this.state.isEmailValid);
+					}
 			};
 
 			_this.displayEmailError = function () {
@@ -26040,7 +26134,7 @@
 							_react2.default.createElement(
 								"div",
 								{ className: "col-sm-10" },
-								_react2.default.createElement("input", { type: "text", id: "name", className: "form-control", name: "name", required: true, autoComplete: "name", placeholder: "Full Name" })
+								_react2.default.createElement("input", { type: "text", id: "name", className: "form-control", name: "name", alt: "user name", required: true, autoComplete: "name", placeholder: "Full Name" })
 							)
 						),
 						_react2.default.createElement(
@@ -26054,7 +26148,7 @@
 							_react2.default.createElement(
 								"div",
 								{ className: "col-sm-10" },
-								_react2.default.createElement("input", { id: "email", className: "form-control", name: "email", type: "email", onChange: this.validateEmail, required: true, autoComplete: "email", placeholder: "name@example.com" }),
+								_react2.default.createElement("input", { id: "email", className: "form-control", name: "email", type: "email", alt: "email address", onChange: this.validateEmail, required: true, autoComplete: "email", placeholder: "name@example.com" }),
 								this.state.isEmailValid ? null : this.displayEmailError()
 							)
 						),
@@ -26069,7 +26163,7 @@
 							_react2.default.createElement(
 								"div",
 								{ className: "col-sm-10" },
-								_react2.default.createElement("input", { id: "pwd", className: "form-control", name: "pwd", type: "password", onChange: this.validatePwd, placeholder: ">= 8 chars, 1 num, 1 CAP, 1 special char", required: true }),
+								_react2.default.createElement("input", { id: "pwd", className: "form-control", name: "pwd", type: "password", alt: "password", onChange: this.validatePwd, placeholder: ">= 8 chars, 1 num, 1 CAP, 1 special char", required: true }),
 								this.state.isPwdValid ? null : this.displayPwdError()
 							)
 						),
@@ -26084,9 +26178,23 @@
 							_react2.default.createElement(
 								"div",
 								{ className: "col-sm-10" },
-								_react2.default.createElement("input", { id: "pwd2", className: "form-control", name: "pwd2", type: "password", onChange: this.validatePwd2, placeholder: ">= 8 chars, 1 num, 1 CAP, 1 special char", required: true }),
+								_react2.default.createElement("input", { id: "pwd2", className: "form-control", name: "pwd2", type: "password", alt: "confirm password", onChange: this.validatePwd2, placeholder: ">= 8 chars, 1 num, 1 CAP, 1 special char", required: true }),
 								this.state.isPwd2Valid ? null : this.displayPwd2Error(),
 								this.state.passwordsMatch ? null : this.displayPwdMatchError()
+							)
+						),
+						_react2.default.createElement(
+							"div",
+							{ className: "form-group" },
+							_react2.default.createElement(
+								"label",
+								{ htmlFor: "title", className: "col-sm-2 control-label" },
+								"Title"
+							),
+							_react2.default.createElement(
+								"div",
+								{ className: "col-sm-10" },
+								_react2.default.createElement("input", { type: "text", id: "title", className: "form-control", name: "title", alt: "title", placeholder: "optional" })
 							)
 						),
 						_react2.default.createElement(
@@ -26102,9 +26210,70 @@
 				);
 			}
 
+			/**
+	   *@param
+	   *@return
+	   * Verifies that the email has the correct data format. If not, sets an error message in the state.
+	   */
+
+
+			/**
+	   *@param
+	   *@return
+	   * Displays email validation error.
+	   */
+
+
+			/**
+	   *@param
+	   *@return
+	   * Verifies format for first password. On failure, sets state with corresponding error message.
+	   */
+
+
 			//TODO refactor this logic with function above
 			//NOTE to REVIEWER I would have liked to just validate pwd input 1 and verify that both passwords are matching
 			//this should ensure that both passwords end up with valid values IMO
+			/**
+	   *@param
+	   *@return
+	   * Verifies format for second password. On failure, sets state with corresponding error message.
+	   */
+
+
+			/**
+	   *@param
+	   *@return
+	   * On first password error, displays error messages.
+	   */
+
+
+			/**
+	   *@param
+	   *@return
+	   * On confirm password input error, displays error messages.
+	   */
+
+
+			/**
+	   *@param
+	   *@return
+	   * If passwords do not match, displays error message.
+	   */
+
+
+			/**
+	   *@param
+	   *@return
+	   * On form submit, verifies that passwords are matching.
+	   */
+
+
+			/**
+	   *@param
+	   *@return
+	   * On form submit, verifies that there are no input errors.
+	   */
 
 		}]);
 
@@ -31659,7 +31828,7 @@
 
 
 	// module
-	exports.push([module.id, "/* app/main.scss */\nbody {\n  background: #f6fafa; }\n\n.navbar navbar-default {\n  border-width: 0;\n  border-radius: none; }\n\n.navbar-default .navbar-nav > li > a {\n  color: #000; }\n\n.navbar {\n  background-color: #d6279a; }\n\n.nav-logo {\n  width: 269px;\n  margin-top: -5px; }\n\n.navbar-default .navbar-brand {\n  color: #003333; }\n\n.navbar-brand {\n  font-family: 'Raleway', sans-serif;\n  font-size: 1.65em;\n  font-weight: 500; }\n\n.btn-danger {\n  color: #000; }\n\n.btn-default {\n  background-color: #e5e5e5; }\n\n/* Webkit / Chrome Specific CSS to remove tap\nhighlight color */\n.btn {\n  -webkit-tap-highlight-color: transparent; }\n\nbutton {\n  margin-right: 8px; }\n\ninput:invalid {\n  border: 1px solid #951b6b; }\n\ninput:valid {\n  border: 1px solid #048D7C; }\n\ninput:active,\ninput:hover,\ninput:focus,\ntextarea:active,\ntextarea:hover,\ntextarea:focus {\n  background-color: #e5e5e5; }\n\n/* This is the style of our error messages */\n.error {\n  width: 100%;\n  min-height: 25px;\n  padding-top: 5px;\n  padding-left: 5px;\n  color: #80175c;\n  -moz-box-sizing: border-box;\n  box-sizing: border-box; }\n\n.error.active {\n  padding: 0.3em; }\n\n.spacer-md {\n  height: 50px; }\n\n.dynamic-header {\n  color: #21586b;\n  text-decoration: underline; }\n\n.fa-heart {\n  color: #d6279a; }\n\n.hide-fa {\n  display: none; }\n\n.footer {\n  padding-top: 30px; }\n\n@media (min-width: 768px) {\n  .btn-block {\n    width: 200px;\n    display: inline-block;\n    text-align: center; } }\n", ""]);
+	exports.push([module.id, "/* app/main.scss */\nbody {\n  background: #f6fafa; }\n\n.navbar navbar-default {\n  border-width: 0;\n  border-radius: none; }\n\n.navbar-default .navbar-nav > li > a {\n  color: #000; }\n\n.navbar {\n  background-color: #d6279a; }\n\n.nav-logo {\n  width: 269px;\n  margin-top: -5px; }\n\n.navbar-default .navbar-brand {\n  color: #003333; }\n\n.navbar-brand {\n  font-family: 'Raleway', sans-serif;\n  font-size: 1.65em;\n  font-weight: 500; }\n\n.btn-danger {\n  color: #000; }\n\n.btn-default {\n  background-color: #e5e5e5; }\n\n/* Webkit / Chrome Specific CSS to remove tap\nhighlight color */\n.btn {\n  -webkit-tap-highlight-color: transparent; }\n\nbutton {\n  margin-right: 8px; }\n\ninput:invalid {\n  border: 1px solid #951b6b; }\n\ninput:valid, .valid {\n  border: 1px solid #048D7C; }\n\ninput:active,\ninput:hover,\ninput:focus,\ntextarea:active,\ntextarea:hover,\ntextarea:focus {\n  background-color: #e5e5e5; }\n\n/* This is the style of our error messages */\n.error {\n  width: 100%;\n  min-height: 25px;\n  padding-top: 5px;\n  padding-left: 5px;\n  color: #80175c;\n  -moz-box-sizing: border-box;\n  box-sizing: border-box; }\n\n.error.active {\n  padding: 0.3em; }\n\n.spacer-md {\n  height: 50px; }\n\n.dynamic-header {\n  color: #21586b;\n  text-decoration: underline; }\n\n.event-heading {\n  padding: 5px;\n  border: 1px solid #e267b8;\n  border-top-left-radius: 8px;\n  border-top-right-radius: 8px; }\n\ndetails {\n  margin-bottom: 10px; }\n\nul {\n  -webkit-padding-start: 15px; }\n\n.event-list {\n  list-style-type: none;\n  background-color: #fae9f4;\n  border: 1px solid #e267b8;\n  border-bottom-left-radius: 8px;\n  border-bottom-right-radius: 8px; }\n\n.event-item {\n  padding: 5px 0; }\n\n.fa-heart {\n  color: #d6279a; }\n\n.hide-fa {\n  display: none; }\n\n.footer {\n  padding-top: 30px; }\n\n@media (min-width: 768px) {\n  .btn-block {\n    width: 200px;\n    display: inline-block;\n    text-align: center; } }\n", ""]);
 
 	// exports
 
