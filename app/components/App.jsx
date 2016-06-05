@@ -6,16 +6,9 @@ import Home from './Home.jsx';
 import Events from './Events.jsx';
 import Event from './Event.jsx';
 import AddEvent from './AddEvent.jsx';
-import uuid from 'node-uuid';
-//import {Modal} from 'react-bootstrap';
-//import {Button} from 'react-bootstrap';
-//import {Input} from 'react-bootstrap';
-import Rebase from 're-base';
+import Registration from './Registration.jsx';
 import {Link, IndexLink} from 'react-router';
-import NavLink from './NavLink.js';
-
-//var base = Rebase.createClass('https://recipe-keeper.firebaseio.com/web/data');
-//var recipesRef = new Firebase('https://recipe-keeper.firebaseio.com/web/data/recipes/');
+//import NavLink from './NavLink.js';
 
 export default class App extends React.Component {
 	constructor(props) {
@@ -28,13 +21,8 @@ export default class App extends React.Component {
 		};
 	}
 
-	componentWillMount() {
-		// base.bindToState('recipes', {
-		// 	context: this,
-		// 	state: 'recipes',
-		// 	asArray: true
-		// });
-	}
+	// componentWillMount() {
+	// }
 
 	render() {
 		let recipes = this.state.recipes;
@@ -56,10 +44,10 @@ export default class App extends React.Component {
 
 								<div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 									<ul className="nav navbar-nav navbar-right">
-										<li><NavLink to='/addEvent' className="header-link" >Add Event</NavLink></li>
-										<li><NavLink to='/events' className="header-link" >Events</NavLink></li>
+										<li><Link to='/addEvent' className="header-link" >Add Event</Link></li>
+										<li><Link to='/events' className="header-link" >Events</Link></li>
 		{/* TODO fix link */}
-										<li><NavLink to='/registration' className="header-link" >Register</NavLink></li>
+										<li><Link to='/registration' className="header-link" >Register</Link></li>
 									</ul>
 								</div>{/* /.navbar-collapse */}
 							</div>{/* /.container-fluid */}
@@ -69,57 +57,6 @@ export default class App extends React.Component {
 
 			{this.props.children}
 
-{/*
-				<Recipes recipes={recipes} onDelete={this.deleteRecipe} />
-				<Button
-					bsStyle="default"
-					onClick={() => this.setState({ show: true})}>
-						Add Recipe
-				</Button>
-				<div className="modal-container">
-					<Modal
-						show={this.state.show}
-						onHide={close}
-						container={this}
-						aria-labelledby="contained-modal-title">
-
-						<Modal.Header>
-							<Modal.Title>Add Recipe</Modal.Title>
-						</Modal.Header>
-
-						<Modal.Body>
-							<form id="recipeForm">
-								<div className="form-group">
-									<Input type="text" 
-										label="Name" 
-										groupClassName="group-class"
-										labelClassName="label-class"
-										id="recipeName"
-										name="recipeName"
-										size="50"
-										help="Name must be unique or recipe will not be saved."
-										bsStyle={this.state.nameValid} hasFeedback
-										onChange={this.validationState}
-									/>
-								</div>
-								<div className="form-group">
-									<label htmlFor="recipe-ingredients">Ingredients</label>
-									<input type="text" className="form-control" id="recipeIngredients" name="recipeIngredients" placeholder="enter ingredients separated by commas" size="50" />
-								</div>
-								<div className="form-group">
-									<label htmlFor="recipe-steps">Steps</label>
-									<textarea className="form-control" id="recipeSteps" name="recipeSteps" placeholder="enter steps separated by line break" rows="10" cols="50"></textarea>
-								</div>
-							</form>
-						</Modal.Body>
-
-						<Modal.Footer>
-							<Button type="submit" onClick={this.addRecipe} bsStyle="primary" >Save</Button>
-							<Button bsStyle="default" onClick={() => this.setState({show: false})}>Close</Button>
-						</Modal.Footer>
-					</Modal>
-				</div>
-*/}
 				<div className="row footer">
 					<div className="col-xs-12 col-sm-12">
 						<p className="text-center">Brought to you with <i className="fa fa-heart"></i><br /> 
