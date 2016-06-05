@@ -47,14 +47,12 @@ export default class AddEvent extends React.Component {
 							</datalist>
 						</div>
 					</div>
-{/* NOTE to REVIEWER: removed this because it seemed redundant, this data should be grabbed from cur user session info
 					<div className="form-group">
 						<label htmlFor="evt-host" className="col-sm-2 control-label">Host</label>
 						<div className="col-sm-10">
 							<input type="text" id="evt-host" className="form-control" name="evt-host" required />
 						</div>
 					</div>
-*/}
 					<div className="form-group">
 						<label htmlFor="evt-start-date" className="col-sm-2 control-label">Start Date/Time</label>
 						<div className="col-sm-10">
