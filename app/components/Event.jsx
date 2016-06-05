@@ -49,7 +49,7 @@ export default class Event extends React.Component {
 	/**
 	 *@param
 	 *@return
-	 *
+	 * Combines address related inputs into one string for display.
 	 */
 	aggregateLocation = () => {
 		let location = '';
@@ -60,7 +60,7 @@ export default class Event extends React.Component {
 	/**
 	 *@param
 	 *@return
-	 *
+	 * Converts data (milliseconds format) to user friendly date.
 	 */
 	friendlyDate = (dateMs) => {
 		let objDate = new Date(dateMs);
@@ -71,9 +71,9 @@ export default class Event extends React.Component {
 	};
 
 	/**
-	 *@param
-	 *@return
-	 *
+	 *@param <str> hours, <str> minutes
+	 *@return <str> time
+	 * Converts time to user friendly format.
 	 */
 	friendlyTime = (hours, minutes) => {
 		let fTime = '',
@@ -102,7 +102,7 @@ export default class Event extends React.Component {
 	/**
 	 *@param
 	 *@return
-	 *
+	 * Converts an array of strings to one string (comma-delimited)
 	 */
 	friendlyGuestList = () => {
 		let fList = '',

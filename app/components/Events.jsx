@@ -3,14 +3,11 @@
 import React from 'react';
 import Event from './Event.jsx';
 import uuid from 'node-uuid';
-//import {Modal} from 'react-bootstrap';
-//import {Button} from 'react-bootstrap';
-//import {Input} from 'react-bootstrap';
 
 export default class Events extends React.Component {
 	constructor(props) {
 		super();
-		//everything could be calculated from uid and dob
+
 		this.state = {
 			events: [
 				{key: "id0001",

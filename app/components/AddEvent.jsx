@@ -58,7 +58,7 @@ export default class AddEvent extends React.Component {
 					<div className="form-group">
 						<label htmlFor="evt-start-date" className="col-sm-2 control-label">Start Date/Time</label>
 						<div className="col-sm-10">
-							<input id="evt-start-date" className="form-control" type="datetime-local" name="evt-start-date" min={this.getCurDate} onChange={this.validateStartDate} required />
+							<input id="evt-start-date" className="form-control" type="datetime-local" name="evt-start-date" onChange={this.validateStartDate} required />
 							{this.state.isStartDateValid ? null : this.displayStartDateError()}
 						</div>
 					</div>
@@ -126,6 +126,11 @@ export default class AddEvent extends React.Component {
 	}
 
 	//helpers
+	/**
+	 *@param
+	 *@return
+	 * Use geolocation api to populate location address fields with current location.
+	 */
 	getGeolocation = () => {
 		var that = this;
 		let geoLocationChk = document.getElementById('curLocation');
@@ -173,6 +178,11 @@ export default class AddEvent extends React.Component {
 		}
 	};
 
+	/**
+	 *@param
+	 *@return
+	 * Handles change on checkbox to use geolocation for form location fields auto completion.
+	 */
 	toggleGeolocation = () => {
 		if (this.state.geoLocationChecked) {
 			this.setState({
@@ -189,13 +199,23 @@ export default class AddEvent extends React.Component {
 		}
 	}
 
-	getCurDate = () => {
-		let curDate = new Date();
-		curDate.setHours(curDate.getHours() - 7);
-		//console.log('curDate: ' + curDate);
-		return curDate;
-	}
+	/**
+	 *@param
+	 *@return
+	 * 
+	 */
+	// getCurDate = () => {
+	// 	let curDate = new Date();
+	// 	curDate.setHours(curDate.getHours() - 7);
+	// 	//console.log('curDate: ' + curDate);
+	// 	return curDate;
+	// }
 
+	/**
+	 *@param
+	 *@return
+	 * Checks whether the start date/time is after the current date. If the check fails, it sets an error message in state.
+	 */
 	validateStartDate = () => {
 		let curDate = new Date();
 		curDate.setHours(curDate.getHours() - 7);
@@ -227,12 +247,22 @@ export default class AddEvent extends React.Component {
 		}
 	}
 
+	/**
+	 *@param
+	 *@return
+	 * Displays start date/time validation error.
+	 */
 	displayStartDateError = () => {
 		return (
 			<p className="start-date-error error">{this.state.startDateErrors}</p>
 		)
 	}
 
+	/**
+	 *@param
+	 *@return
+	 * Converts time portion from the start date/time to units minutes. This allows for simplest comparison with the end time.
+	 */
 	dateStrToTimeMinutes = (dateStr) => {
 		let dateAr = [];
 		let timeMinutes, timeHours;
@@ -250,6 +280,11 @@ export default class AddEvent extends React.Component {
 		return timeMinutes;
 	}
 
+	/**
+	 *@param
+	 *@return
+	 * Converts the end time to units minutes. Allows for comparison with the start time.
+	 */
 	timeStrToMinutes = () => {
 		let endTime = document.getElementById('evt-end-time');
 		let endHours, endMinutes;
@@ -263,6 +298,11 @@ export default class AddEvent extends React.Component {
 		return endMinutes;
 	}
 
+	/**
+	 *@param
+	 *@return
+	 * Checks that the end time is later than the start time.
+	 */
 	validateEndTime = () => {
 		let isEndTimeValid;
 		let endTimeErrors = '';
@@ -281,18 +321,33 @@ export default class AddEvent extends React.Component {
 		}
 	}
 
+	/**
+	 *@param
+	 *@return
+	 * If the end time validation fails, displays the error message.
+	 */
 	displayEndTimeError = () => {
 		return (
 			<p className="end-time-error error">{this.state.endTimeErrors}</p>
 		)
 	}
 
+	/**
+	 *@param
+	 *@return
+	 * Converts string format of guest list to an array.
+	 */
 	//parse guest string input val to array
 	guestStrToList = () => {
 		let guests = document.getElementById('event-guests');
 		return guests.value.split('\n');
 	}
 
+	/**
+	 *@param
+	 *@return
+	 * On form submit, would verify that there are no input errors. If error free, submit form.
+	 */
 	validateEventForm = () => {
 		let guestAr = this.guestStrToList();
 //TODO

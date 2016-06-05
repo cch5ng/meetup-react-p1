@@ -61,27 +61,42 @@ export default class Registration extends React.Component {
 		);
 	}
 
+	/**
+	 *@param
+	 *@return
+	 * Verifies that the email has the correct data format. If not, sets an error message in the state.
+	 */
 	validateEmail = (e) => {
-		console.log('email event handler');
+		//console.log('email event handler');
 		var email = document.getElementById('email');
 
 		if (email.value.match(/\w+@\w+.\w+/g)) {
 			this.setState({isEmailValid: true, emailErrors: ''})
 			email.setCustomValidity('');
-			console.log('isEmailValid: ' + this.state.isEmailValid);
+			//console.log('isEmailValid: ' + this.state.isEmailValid);
 		} else {
 			this.setState({isEmailValid: false, emailErrors: 'Email address should have the format: name@mail.com'})
 			email.setCustomValidity("Email address should have the format: name@mail.com");
-			console.log('isEmailValid: ' + this.state.isEmailValid);
+			//console.log('isEmailValid: ' + this.state.isEmailValid);
 		}
 	};
 
+	/**
+	 *@param
+	 *@return
+	 * Displays email validation error.
+	 */
 	displayEmailError = () => {
 		return (
 			<p className="email-error error">{this.state.emailErrors}</p>
 		)
 	};
 
+	/**
+	 *@param
+	 *@return
+	 * Verifies format for first password. On failure, sets state with corresponding error message.
+	 */
 	validatePwd = (e) => {
 		var pwd = document.getElementById('pwd');
 		var pwdErrorsAr = [];
@@ -119,6 +134,11 @@ export default class Registration extends React.Component {
 //TODO refactor this logic with function above
 //NOTE to REVIEWER I would have liked to just validate pwd input 1 and verify that both passwords are matching
 //this should ensure that both passwords end up with valid values IMO
+	/**
+	 *@param
+	 *@return
+	 * Verifies format for second password. On failure, sets state with corresponding error message.
+	 */
 	validatePwd2 = (e) => {
 		var pwd2 = document.getElementById('pwd2');
 		var pwdErrorsAr2 = [];
@@ -153,6 +173,11 @@ export default class Registration extends React.Component {
 		//console.log('pwdErrorsAr2: ' + pwdErrorsAr2);
 	};
 
+	/**
+	 *@param
+	 *@return
+	 * On first password error, displays error messages.
+	 */
 	displayPwdError = () => {
 		let pwdErrors = this.state.pwdErrors;
 		return (
@@ -162,6 +187,11 @@ export default class Registration extends React.Component {
 		)
 	};
 
+	/**
+	 *@param
+	 *@return
+	 * On confirm password input error, displays error messages.
+	 */
 	displayPwd2Error = () => {
 		let pwd2Errors = this.state.pwd2Errors;
 		return (
@@ -171,12 +201,22 @@ export default class Registration extends React.Component {
 		)
 	};
 
+	/**
+	 *@param
+	 *@return
+	 * If passwords do not match, displays error message.
+	 */
 	displayPwdMatchError = () => {
 		return (
 			<p className="pwd-match-error error">{this.state.passwordsMatchError}</p>
 		)
 	};
 
+	/**
+	 *@param
+	 *@return
+	 * On form submit, verifies that passwords are matching.
+	 */
 	passwordsMatch = () => {
 		let pwd = document.getElementById('pwd');
 		let pwd2 = document.getElementById('pwd2');
@@ -189,6 +229,11 @@ export default class Registration extends React.Component {
 
 	}
 
+	/**
+	 *@param
+	 *@return
+	 * On form submit, verifies that there are no input errors.
+	 */
 	validateForm = () => {
 //NOTE to REVIEWER, moved check for passwords here b/c had difficulty troubleshooting removal of mismatched
 //passwords error message when the issue was resolved on password input change (might have been bad js logic)
