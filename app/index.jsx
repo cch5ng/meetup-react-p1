@@ -16,10 +16,10 @@ var css = require("!css!sass!./main.scss");
 
 ReactDOM.render((
 	<Router history={browserHistory} >
-		<Route path='/' component={App}>
+		<Route path='/meetup-react-p1' component={App}>
 			<IndexRoute component={Home}/>
-			<Route path='/addEvent' component={AddEvent} />
-			<Route path='/events' component={Events} />
-			<Route path='/registration' component={Registration} />
+			<Route path='/meetup-react-p1/addEvent' component={AddEvent} />
+			<Route path='/meetup-react-p1/events' component={Events} />
+			<Route path='/meetup-react-p1/registration' component={Registration} />
 		</Route>
 	</Router>), document.getElementById('app'));
