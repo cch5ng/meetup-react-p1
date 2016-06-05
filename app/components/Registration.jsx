@@ -53,6 +53,12 @@ export default class Registration extends React.Component {
 							{this.state.passwordsMatch ? null : this.displayPwdMatchError()}
 						</div>
 					</div>
+					<div className="form-group">
+						<label htmlFor="title" className="col-sm-2 control-label">Title</label>
+						<div className="col-sm-10">
+							<input type="text" id="title" className="form-control" name="title" alt="title" placeholder="optional" />
+						</div>
+					</div>
 					<div className="text-center">
 						<button className="btn btn-primary btn-block" id="register-submit" onClick={this.validateForm} type="button">Save</button>
 					</div>
