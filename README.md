@@ -13,11 +13,8 @@
 ## Reviewer Notes
 
 * The main forms are at /app/components/Registration.jsx, and /app/components/Registration.jsx
-* The events view is at /app/components/Events.jsx, and /app/components/Event.jsx 
-
-## Warning
-
-* Styles are still in flux, please bear with formatting!
+* The events view is at /app/components/Events.jsx, and /app/components/Event.jsx
+* I had difficulties running Chrome Vox with this application. I think there is some conflict with React application rendering.
 
 ## Comments/Concerns
 
