@@ -8,6 +8,8 @@ $logo-color: #003333;
 $table-color: #96ceb4;
 $input-color: #e5e5e5;
 $error-color: #80175c;
+$list-border-color: #e267b8;
+$list-bgd-color: #fae9f4; //#f6d3ea;
 
 body {
 	background: $primary-color;
@@ -109,6 +111,37 @@ textarea:focus {
 	color: #21586b;
 	text-decoration: underline;
 }
+
+//event list formatting
+
+.event-heading {
+	padding: 5px;
+	border: 1px solid $list-border-color;
+	border-top-left-radius: 8px;
+	border-top-right-radius: 8px;
+}
+
+details {
+	margin-bottom: 10px;
+}
+
+//overwrite default
+ul {
+	-webkit-padding-start: 15px;
+}
+
+.event-list {
+	list-style-type: none;
+	background-color: $list-bgd-color;
+	border: 1px solid $list-border-color;
+	border-bottom-left-radius: 8px;
+	border-bottom-right-radius: 8px;
+}
+
+.event-item {
+	padding: 5px 0;
+}
+
 
 //footer
 
