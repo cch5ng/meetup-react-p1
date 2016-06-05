@@ -5,10 +5,11 @@ $primary-color: #f6fafa;
 $nav-color: #d6279a;
 $logo-color: #003333;
 $table-color: #96ceb4;
+$input-color: #e5e5e5;
+$error-color: #80175c;
 
 body {
 	background: $primary-color;
-
 }
 
 //bootstrap override
@@ -63,98 +64,33 @@ input:valid {
   border: 1px solid #048D7C;
 }
 
+input:active,
+input:hover,
+input:focus,
+textarea:active,
+textarea:hover,
+textarea:focus {
+	background-color: $input-color;
+}
+
 /* This is the style of our error messages */
 .error {
-  width: 100%;
-  min-height: 25px;
-  padding: 0;
- 
-  font-size: 80%;
-  color: white;
-  background-color: #6b134d;
-  border-radius: 0 0 5px 5px;
- 
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
+	width: 100%;
+	min-height: 25px;
+	padding-top: 5px;
+	padding-left: 5px;
+	color: $error-color;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
 }
 
 .error.active {
-  padding: 0.3em;
-}
-
-
-// react-bootstrap modal
-.modal-container {
-  position: relative;
-}
-
-.modal-container .modal, .modal-container .modal-backdrop {
-  position: absolute;
-}
-
-.center {
-	text-align: center;
-}
-
-.clear {
-	clear: both;
-}
-
-.hidden {
-	display: none;
-}
-
-.recipe {
-	width: 80%;
-	background-color: $table-color;
-	border: 1px solid grey;
-	border-radius: 3px;
-	margin: 5px auto;
-	padding-left: 10px;
-}
-
-.h5 {
-	//text-decoration: underline;
-	text-align: center;
-}
-
-//keeps the delete/edit buttons in same grouping with their recipe
-.padding {
-	padding-bottom: 40px;
-}
-
-.ingredientList {
-	width: 90%;
-	background-color: $primary-color;
-	border: 1px solid grey;
-	border-radius: 3px;
-	margin-bottom: 5px;
-	margin: 0 auto;
-}
-
-.ingredient {
-	border-bottom: 1px solid grey;
-	padding: 5px 10px;
-}
-
-.button-section {
-	padding-top: 8px;
-}
-
-.buttons {
-	float: left;
-	list-style: none;
-	margin-right: 5px;
-}
-
-.btn-add {
-	margin-left: 10%;
+	padding: 0.3em;
 }
 
 .spacer-md {
 	height: 50px;
 }
-
 
 .dynamic-header {
 	color: #21586b;
@@ -167,11 +103,6 @@ input:valid {
 
 .hide-fa {
 	display: none;
-}
-
-//override fixed-data-table css
-.fixedDataTableLayout_main {
-	margin: 0 auto;
 }
 
 .footer {
