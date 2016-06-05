@@ -16,7 +16,8 @@ export default class AddEvent extends React.Component {
 			isStartDateValid: true,
 			startDateErrors: '',
 			isEndTimeValid: true,
-			endTimeErrors: ''
+			endTimeErrors: '',
+			startTimeMin: null
 		}
 	}
 
@@ -65,6 +66,7 @@ export default class AddEvent extends React.Component {
 						<label htmlFor="evt-end-time" className="col-sm-2 control-label">End Time</label>
 						<div className="col-sm-10">
 							<input id="evt-end-time" className="form-control" type="time" name="evt-end-time" onChange={this.validateEndTime} />
+							{this.state.isEndTimeValid ? null : this.displayEndTimeError()}
 						</div>
 					</div>
 					<div className="form-group">
@@ -190,7 +192,7 @@ export default class AddEvent extends React.Component {
 	getCurDate = () => {
 		let curDate = new Date();
 		curDate.setHours(curDate.getHours() - 7);
-		console.log('curDate: ' + curDate);
+		//console.log('curDate: ' + curDate);
 		return curDate;
 	}
 
@@ -199,21 +201,28 @@ export default class AddEvent extends React.Component {
 		curDate.setHours(curDate.getHours() - 7);
 
 		let startDateInp = document.getElementById('evt-start-date');
+		//console.log('startDateInp val: ' + startDateInp.value);
+		let startTimeMin = this.dateStrToTimeMinutes(startDateInp.value);
 		let startDate =  new Date(startDateInp.value);
-		console.log('startDate: ' + startDate);
-		console.log('curDate: ' + curDate);
+		//console.log('startDate: ' + startDate);
+		//console.log('curDate: ' + curDate);
 		//verify start date later than cur date/time
-		console.log('startDate ms: ' + startDate.getTime());
-		console.log('curDate ms: ' + curDate.getTime());
+		//console.log('startDate ms: ' + startDate.getTime());
+		//console.log('curDate ms: ' + curDate.getTime());
 		if (startDate.getTime() < curDate.getTime()) {
+			//convert start time to array value
 			//error condition
 			this.setState(
-				{isStartDateValid: false, startDateErrors: 'The start date and time should be in the future'}
+				{isStartDateValid: false,
+				startDateErrors: 'The start date and time should be in the future',
+				startTimeMin: null}
 			);
 		} else {
 			//clear errors
 			this.setState(
-				{isStartDateValid: true, startDateErrors: ''}
+				{isStartDateValid: true,
+				startDateErrors: '',
+				startTimeMin: startTimeMin}
 			);
 		}
 	}
@@ -221,6 +230,60 @@ export default class AddEvent extends React.Component {
 	displayStartDateError = () => {
 		return (
 			<p className="start-date-error error">{this.state.startDateErrors}</p>
+		)
+	}
+
+	dateStrToTimeMinutes = (dateStr) => {
+		let dateAr = [];
+		let timeMinutes, timeHours;
+		dateAr = dateStr.split('T');
+		timeHours = parseInt(dateAr[1].split(':')[0]);
+		//console.log('timeHours: ' + timeHours);
+		//console.log('typeof timeHours: ' + typeof timeHours);
+		timeMinutes = parseInt(dateAr[1].split(':')[1]);
+		//console.log('timeMinutes: ' + timeMinutes);
+		//console.log('typeof timeMinutes: ' + typeof timeMinutes);
+
+		timeMinutes += timeHours * 60;
+		//console.log('timeMinutes: ' + timeMinutes);
+
+		return timeMinutes;
+	}
+
+	timeStrToMinutes = () => {
+		let endTime = document.getElementById('evt-end-time');
+		let endHours, endMinutes;
+		//console.log('endTime: ' + endTime.value);
+		//console.log('typeof endTime: ' + typeof endTime.value);
+
+		endHours = parseInt(endTime.value.split(':')[0]);
+		endMinutes = parseInt(endTime.value.split(':')[1]);
+
+		endMinutes += endHours * 60;
+		return endMinutes;
+	}
+
+	validateEndTime = () => {
+		let isEndTimeValid;
+		let endTimeErrors = '';
+		let endTimeMin = this.timeStrToMinutes(); 
+
+		if (this.state.startTimeMin < endTimeMin) {
+			this.setState({
+				isEndTimeValid: true,
+				endTimeErrors: ''
+			});
+		} else {
+			this.setState({
+				isEndTimeValid: false,
+				endTimeErrors: 'The end time should be later than the start time'
+			});
+		}
+	}
+
+	displayEndTimeError = () => {
+		return (
+			<p className="end-time-error error">{this.state.endTimeErrors}</p>
 		)
 	}
 
@@ -233,7 +296,7 @@ export default class AddEvent extends React.Component {
 	validateEventForm = () => {
 		let guestAr = this.guestStrToList();
 //TODO
-		//if (no form errors) {
+		//if (this.state.isStartDateValid && this.state.isEndTimeValid) {
 			//submit form, save to data store
 		//} else {
 			//prevent submit, give error msg
