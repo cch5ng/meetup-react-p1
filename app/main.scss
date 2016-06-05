@@ -1,5 +1,6 @@
 /* app/main.scss */
 
+//globals
 //vars
 $primary-color: #f6fafa;
 $nav-color: #d6279a;
@@ -11,6 +12,8 @@ $error-color: #80175c;
 body {
 	background: $primary-color;
 }
+
+//nav
 
 //bootstrap override
 .navbar navbar-default {
@@ -41,6 +44,7 @@ body {
 	font-weight: 500;
 }
 
+//form
 //not enough viz contrast with white text on red bgd
 .btn-danger {
 	color: #000;
@@ -50,18 +54,22 @@ body {
 	background-color: #e5e5e5;
 }
 
+/* Webkit / Chrome Specific CSS to remove tap
+highlight color */
+.btn {
+	-webkit-tap-highlight-color: transparent;
+}
+
 button {
 	margin-right: 8px;
 }
 
-//form validation
-
 input:invalid {
-  border: 1px solid #951b6b;
+	border: 1px solid #951b6b;
 }
 
 input:valid {
-  border: 1px solid #048D7C;
+	border: 1px solid #048D7C;
 }
 
 input:active,
@@ -72,6 +80,11 @@ textarea:hover,
 textarea:focus {
 	background-color: $input-color;
 }
+
+//input:focus,
+//textarea:focus {
+//	outline: 0;
+//}
 
 /* This is the style of our error messages */
 .error {
@@ -96,6 +109,8 @@ textarea:focus {
 	color: #21586b;
 	text-decoration: underline;
 }
+
+//footer
 
 .fa-heart {
 	color: $nav-color;
