@@ -28,31 +28,40 @@ export default class Event extends React.Component {
 		return (
 			<div>
 				<details>
-					<summary>
+					<summary className="event-heading">
 						<b>{this.state.name}</b>  (on {this.friendlyDate(this.state.startDate)})
 					</summary>
-					<ul>
-						<li><b>Type</b> {this.state.type}</li>
-						<li><b>Host</b> {this.state.host}</li>
-						<li><b>Date</b> {this.friendlyDate(this.state.startDate)} - {this.friendlyDate(this.state.endDate)}</li>
+					<ul className="event-list">
+						<li className="event-item"><b>Type</b> {this.state.type}</li>
+						<li className="event-item"><b>Host</b> {this.state.host}</li>
+						<li className="event-item"><b>Date</b> {this.friendlyDate(this.state.startDate)} - {this.friendlyDate(this.state.endDate)}</li>
 {/* TODO fix location*/}
-						<li><b>Location</b> {this.aggregateLocation()}</li>
-						<li><b>Message from Host</b> {this.state.msg}</li>
-						<li><b>Guests</b> {this.friendlyGuestList()}</li>
+						<li className="event-item"><b>Location</b> {this.aggregateLocation()}</li>
+						<li className="event-item"><b>Message from Host</b> {this.state.msg}</li>
+						<li className="event-item"><b>Guests</b> {this.friendlyGuestList()}</li>
 					</ul>
 				</details>
 			</div>
-
 		);
 	}
 
 	//helpers
+	/**
+	 *@param
+	 *@return
+	 *
+	 */
 	aggregateLocation = () => {
 		let location = '';
 		location = this.state.venue + ', ' + this.state.add1 + ', ' + this.state.city + ' ' + this.state.zip;
 		return location;
 	};
 
+	/**
+	 *@param
+	 *@return
+	 *
+	 */
 	friendlyDate = (dateMs) => {
 		let objDate = new Date(dateMs);
 		let fDate = '';
@@ -61,6 +70,11 @@ export default class Event extends React.Component {
 		return fDate;
 	};
 
+	/**
+	 *@param
+	 *@return
+	 *
+	 */
 	friendlyTime = (hours, minutes) => {
 		let fTime = '',
 			fHours = '',
@@ -85,6 +99,11 @@ export default class Event extends React.Component {
 		return fTime;
 	};
 
+	/**
+	 *@param
+	 *@return
+	 *
+	 */
 	friendlyGuestList = () => {
 		let fList = '',
 			len = this.state.guests.length;

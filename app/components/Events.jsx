@@ -67,14 +67,3 @@ export default class Events extends React.Component {
 	}
 
 }
-
-
-// export default ({events, onDelete, onEdit}) => {
-// 	return (
-// 		<div className="">
-// 			{events.map(event =>
-// 				<Event key={event.key} name={event.name} type={event.type} location={event.location} host={event.host} startDate={event.startDate} endDate={event.endDate} msg={event.msg} guests={event.guests} />
-// 			)}
-// 		</div>
-// 	)
-// }
