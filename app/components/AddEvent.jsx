@@ -12,7 +12,11 @@ export default class AddEvent extends React.Component {
 			geoAddressFull: '',
 			geoAdd1: '',
 			geoCity: '',
-			geoZip: ''
+			geoZip: '',
+			isStartDateValid: true,
+			startDateErrors: '',
+			isEndTimeValid: true,
+			endTimeErrors: ''
 		}
 	}
 
@@ -28,7 +32,7 @@ export default class AddEvent extends React.Component {
 					<div className="form-group">
 						<label htmlFor="evt-name" className="col-sm-2 control-label">Event Name</label>
 						<div className="col-sm-10">
-							<input type="text" id="evt-name" className="form-control" name="evt-name" required />
+							<input type="text" id="evt-name" className="form-control" name="evt-name" placeholder="required" required />
 						</div>
 					</div>
 					<div className="form-group">
@@ -53,13 +57,14 @@ export default class AddEvent extends React.Component {
 					<div className="form-group">
 						<label htmlFor="evt-start-date" className="col-sm-2 control-label">Start Date/Time</label>
 						<div className="col-sm-10">
-							<input id="evt-start-date" className="form-control" type="datetime-local" name="evt-start-date" required />
+							<input id="evt-start-date" className="form-control" type="datetime-local" name="evt-start-date" min={this.getCurDate} onChange={this.validateStartDate} required />
+							{this.state.isStartDateValid ? null : this.displayStartDateError()}
 						</div>
 					</div>
 					<div className="form-group">
-						<label htmlFor="evt-end-date" className="col-sm-2 control-label">End Date/Time</label>
+						<label htmlFor="evt-end-time" className="col-sm-2 control-label">End Time</label>
 						<div className="col-sm-10">
-							<input id="evt-end-date" className="form-control" type="datetime-local" name="evt-end-date" required />
+							<input id="evt-end-time" className="form-control" type="time" name="evt-end-time" onChange={this.validateEndTime} />
 						</div>
 					</div>
 					<div className="form-group">
@@ -180,6 +185,43 @@ export default class AddEvent extends React.Component {
 			});
 			this.getGeolocation();
 		}
+	}
+
+	getCurDate = () => {
+		let curDate = new Date();
+		curDate.setHours(curDate.getHours() - 7);
+		console.log('curDate: ' + curDate);
+		return curDate;
+	}
+
+	validateStartDate = () => {
+		let curDate = new Date();
+		curDate.setHours(curDate.getHours() - 7);
+
+		let startDateInp = document.getElementById('evt-start-date');
+		let startDate =  new Date(startDateInp.value);
+		console.log('startDate: ' + startDate);
+		console.log('curDate: ' + curDate);
+		//verify start date later than cur date/time
+		console.log('startDate ms: ' + startDate.getTime());
+		console.log('curDate ms: ' + curDate.getTime());
+		if (startDate.getTime() < curDate.getTime()) {
+			//error condition
+			this.setState(
+				{isStartDateValid: false, startDateErrors: 'The start date and time should be in the future'}
+			);
+		} else {
+			//clear errors
+			this.setState(
+				{isStartDateValid: true, startDateErrors: ''}
+			);
+		}
+	}
+
+	displayStartDateError = () => {
+		return (
+			<p className="start-date-error error">{this.state.startDateErrors}</p>
+		)
 	}
 
 	//parse guest string input val to array
