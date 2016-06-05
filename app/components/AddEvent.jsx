@@ -50,7 +50,7 @@ export default class AddEvent extends React.Component {
 					<div className="form-group">
 						<label htmlFor="evt-host" className="col-sm-2 control-label">Host</label>
 						<div className="col-sm-10">
-							<input type="text" id="evt-host" className="form-control" name="evt-host" required />
+							<input type="text" id="evt-host" className="form-control" name="evt-host" placeholder="individual or organization" required />
 						</div>
 					</div>
 					<div className="form-group">
@@ -77,12 +77,14 @@ export default class AddEvent extends React.Component {
 						</div>
 					</div>
 					<div className="add-group">
+{/*
 						<div className="form-group">
 							<label htmlFor="venue" className="col-sm-2 control-label">Venue</label>
 							<div className="col-sm-10">
 								<input type="text" id="venue" className="form-control" name="venue" alt="event venue name" placeholder="optional" />
 							</div>
 						</div>
+*/}
 						<div className="form-group">
 							<label htmlFor="add1" className="col-sm-2 control-label">Street Address</label>
 							<div className="col-sm-10">
