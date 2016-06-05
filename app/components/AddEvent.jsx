@@ -33,13 +33,13 @@ export default class AddEvent extends React.Component {
 					<div className="form-group">
 						<label htmlFor="evt-name" className="col-sm-2 control-label">Event Name</label>
 						<div className="col-sm-10">
-							<input type="text" id="evt-name" className="form-control" name="evt-name" placeholder="required" required />
+							<input type="text" id="evt-name" className="form-control" name="evt-name" alt="event name" placeholder="required" required />
 						</div>
 					</div>
 					<div className="form-group">
 						<label htmlFor="evt-type" className="col-sm-2 control-label">Event Type</label>
 						<div className="col-sm-10">
-							<input list="evt-type" className="form-control" name="evt-type" />
+							<input list="evt-type" className="form-control" name="evt-type" alt="event type" />
 							<datalist id="evt-type" >
 							  <option value="Social" />
 							  <option value="Business" />
@@ -58,14 +58,14 @@ export default class AddEvent extends React.Component {
 					<div className="form-group">
 						<label htmlFor="evt-start-date" className="col-sm-2 control-label">Start Date/Time</label>
 						<div className="col-sm-10">
-							<input id="evt-start-date" className="form-control" type="datetime-local" name="evt-start-date" onChange={this.validateStartDate} required />
+							<input id="evt-start-date" className="form-control" type="datetime-local" name="evt-start-date" alt="event start date and time" onChange={this.validateStartDate} required />
 							{this.state.isStartDateValid ? null : this.displayStartDateError()}
 						</div>
 					</div>
 					<div className="form-group">
 						<label htmlFor="evt-end-time" className="col-sm-2 control-label">End Time</label>
 						<div className="col-sm-10">
-							<input id="evt-end-time" className="form-control" type="time" name="evt-end-time" onChange={this.validateEndTime} />
+							<input id="evt-end-time" className="form-control" type="time" name="evt-end-time" alt="event end time" onChange={this.validateEndTime} />
 							{this.state.isEndTimeValid ? null : this.displayEndTimeError()}
 						</div>
 					</div>
@@ -73,7 +73,7 @@ export default class AddEvent extends React.Component {
 						<div className="col-sm-offset-2 col-sm-10">
 							<div className="checkbox">
 								<label>
-									<input type="checkbox" id="curLocation" defaultChecked onChange={this.toggleGeolocation} /> Use current location
+									<input type="checkbox" id="curLocation" alt="checkbox to use geolocation for event location" defaultChecked onChange={this.toggleGeolocation} /> Use current location
 								</label>
 							</div>
 						</div>
@@ -82,38 +82,38 @@ export default class AddEvent extends React.Component {
 						<div className="form-group">
 							<label htmlFor="venue" className="col-sm-2 control-label">Venue</label>
 							<div className="col-sm-10">
-								<input type="text" id="venue" className="form-control" name="venue" placeholder="(optional)" />
+								<input type="text" id="venue" className="form-control" name="venue" alt="event venue name" placeholder="(optional)" />
 							</div>
 						</div>
 						<div className="form-group">
 							<label htmlFor="add1" className="col-sm-2 control-label">Street Address</label>
 							<div className="col-sm-10">
-								<input type="text" id="add1" className="form-control" name="address" required autoComplete="street-address" value={this.state.geoAdd1} />
+								<input type="text" id="add1" className="form-control" name="address" alt="event street address" required autoComplete="street-address" value={this.state.geoAdd1} />
 							</div>
 						</div>
 						<div className="form-group">
 							<label htmlFor="city" className="col-sm-2 control-label">City</label>
 							<div className="col-sm-10">
-								<input type="text" id="city" className="form-control" name="province" required autoComplete="address-level2" value={this.state.geoCity} />
+								<input type="text" id="city" className="form-control" name="province" alt="event city" required autoComplete="address-level2" value={this.state.geoCity} />
 							</div>
 						</div>
 						<div className="form-group">
 							<label htmlFor="zip" className="col-sm-2 control-label">Zip Code</label>
 							<div className="col-sm-10">
-								<input type="number" id="zip" className="form-control" name="state" required autoComplete="postal-code" value={this.state.geoZip} />
+								<input type="number" id="zip" className="form-control" name="state" alt="event zip code" required autoComplete="postal-code" value={this.state.geoZip} />
 							</div>
 						</div>
 					</div>
 					<div className="form-group">
 						<label htmlFor="event-msg" className="col-sm-2 control-label">Event Note</label>
 						<div className="col-sm-10">
-							<input type="text" id="event-msg" className="form-control" name="event-msg" placeholder="(optional)" />
+							<input type="text" id="event-msg" className="form-control" name="event-msg" alt="note to attendees" placeholder="(optional)" />
 						</div>
 					</div>
 					<div className="form-group">
 						<label htmlFor="event-guests" className="col-sm-2 control-label">Guests</label>
 						<div className="col-sm-10">
-							<textarea id="event-guests" className="form-control" placeholder="(optional) Separate guests with a new line"></textarea>
+							<textarea id="event-guests" className="form-control" alt="guest list" placeholder="(optional) Separate guests with a new line"></textarea>
 						</div>
 					</div>
 
