@@ -82,7 +82,7 @@ export default class AddEvent extends React.Component {
 						<div className="form-group">
 							<label htmlFor="venue" className="col-sm-2 control-label">Venue</label>
 							<div className="col-sm-10">
-								<input type="text" id="venue" className="form-control" name="venue" alt="event venue name" placeholder="(optional)" />
+								<input type="text" id="venue" className="form-control" name="venue" alt="event venue name" placeholder="optional" />
 							</div>
 						</div>
 						<div className="form-group">
@@ -107,13 +107,13 @@ export default class AddEvent extends React.Component {
 					<div className="form-group">
 						<label htmlFor="event-msg" className="col-sm-2 control-label">Event Note</label>
 						<div className="col-sm-10">
-							<input type="text" id="event-msg" className="form-control" name="event-msg" alt="note to attendees" placeholder="(optional)" />
+							<input type="text" id="event-msg" className="form-control" name="event-msg" alt="note to attendees" placeholder="optional" />
 						</div>
 					</div>
 					<div className="form-group">
 						<label htmlFor="event-guests" className="col-sm-2 control-label">Guests</label>
 						<div className="col-sm-10">
-							<textarea id="event-guests" className="form-control" alt="guest list" placeholder="(optional) Separate guests with a new line"></textarea>
+							<textarea id="event-guests" className="form-control valid" alt="guest list" placeholder="optional Separate guests with a new line"></textarea>
 						</div>
 					</div>
 
