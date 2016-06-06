@@ -25794,27 +25794,6 @@
 								{ className: 'form-group' },
 								_react2.default.createElement(
 									'label',
-<<<<<<< HEAD
-									{ htmlFor: 'venue', className: 'col-sm-2 control-label' },
-									'Venue'
-								),
-								_react2.default.createElement(
-									'div',
-									{ className: 'col-sm-10' },
-<<<<<<< HEAD
-									_react2.default.createElement('input', { type: 'text', id: 'venue', className: 'form-control', name: 'venue', alt: 'event venue name', placeholder: '(optional)' })
-=======
-									_react2.default.createElement('input', { type: 'text', id: 'venue', className: 'form-control', name: 'venue', alt: 'event venue name', placeholder: 'optional' })
->>>>>>> v1
-								)
-							),
-							_react2.default.createElement(
-								'div',
-								{ className: 'form-group' },
-								_react2.default.createElement(
-									'label',
-=======
->>>>>>> v1
 									{ htmlFor: 'add1', className: 'col-sm-2 control-label' },
 									'Street Address'
 								),
@@ -25864,15 +25843,7 @@
 							_react2.default.createElement(
 								'div',
 								{ className: 'col-sm-10' },
-<<<<<<< HEAD
-<<<<<<< HEAD
-								_react2.default.createElement('input', { type: 'text', id: 'event-msg', className: 'form-control', name: 'event-msg', alt: 'note to attendees', placeholder: '(optional)' })
-=======
-								_react2.default.createElement('input', { type: 'text', id: 'event-msg', className: 'form-control', name: 'event-msg', alt: 'note to attendees', placeholder: 'optional' })
->>>>>>> v1
-=======
 								_react2.default.createElement('textarea', { id: 'event-guests', className: this.getGuestsTextClass(), alt: 'guest list', onChange: this.validateGuestsText, required: true, placeholder: 'Separate guests with a new line' })
->>>>>>> v1
 							)
 						),
 						_react2.default.createElement(
@@ -25886,15 +25857,7 @@
 							_react2.default.createElement(
 								'div',
 								{ className: 'col-sm-10' },
-<<<<<<< HEAD
-<<<<<<< HEAD
-								_react2.default.createElement('textarea', { id: 'event-guests', className: 'form-control', alt: 'guest list', placeholder: '(optional) Separate guests with a new line' })
-=======
-								_react2.default.createElement('textarea', { id: 'event-guests', className: 'form-control valid', alt: 'guest list', placeholder: 'optional Separate guests with a new line' })
->>>>>>> v1
-=======
 								_react2.default.createElement('input', { type: 'text', id: 'event-msg', className: 'form-control', name: 'event-msg', alt: 'note to attendees', placeholder: 'optional' })
->>>>>>> v1
 							)
 						),
 						_react2.default.createElement(
@@ -31930,15 +31893,7 @@
 
 
 	// module
-<<<<<<< HEAD
-<<<<<<< HEAD
-	exports.push([module.id, "/* app/main.scss */\nbody {\n  background: #f6fafa; }\n\n.navbar navbar-default {\n  border-width: 0;\n  border-radius: none; }\n\n.navbar-default .navbar-nav > li > a {\n  color: #000; }\n\n.navbar {\n  background-color: #d6279a; }\n\n.nav-logo {\n  width: 269px;\n  margin-top: -5px; }\n\n.navbar-default .navbar-brand {\n  color: #003333; }\n\n.navbar-brand {\n  font-family: 'Raleway', sans-serif;\n  font-size: 1.65em;\n  font-weight: 500; }\n\n.btn-danger {\n  color: #000; }\n\n.btn-default {\n  background-color: #e5e5e5; }\n\n/* Webkit / Chrome Specific CSS to remove tap\nhighlight color */\n.btn {\n  -webkit-tap-highlight-color: transparent; }\n\nbutton {\n  margin-right: 8px; }\n\ninput:invalid {\n  border: 1px solid #951b6b; }\n\ninput:valid {\n  border: 1px solid #048D7C; }\n\ninput:active,\ninput:hover,\ninput:focus,\ntextarea:active,\ntextarea:hover,\ntextarea:focus {\n  background-color: #e5e5e5; }\n\n/* This is the style of our error messages */\n.error {\n  width: 100%;\n  min-height: 25px;\n  padding-top: 5px;\n  padding-left: 5px;\n  color: #80175c;\n  -moz-box-sizing: border-box;\n  box-sizing: border-box; }\n\n.error.active {\n  padding: 0.3em; }\n\n.spacer-md {\n  height: 50px; }\n\n.dynamic-header {\n  color: #21586b;\n  text-decoration: underline; }\n\n.event-heading {\n  padding: 5px;\n  border: 1px solid #e267b8;\n  border-top-left-radius: 8px;\n  border-top-right-radius: 8px; }\n\ndetails {\n  margin-bottom: 10px; }\n\nul {\n  -webkit-padding-start: 15px; }\n\n.event-list {\n  list-style-type: none;\n  background-color: #fae9f4;\n  border: 1px solid #e267b8;\n  border-bottom-left-radius: 8px;\n  border-bottom-right-radius: 8px; }\n\n.event-item {\n  padding: 5px 0; }\n\n.fa-heart {\n  color: #d6279a; }\n\n.hide-fa {\n  display: none; }\n\n.footer {\n  padding-top: 30px; }\n\n@media (min-width: 768px) {\n  .btn-block {\n    width: 200px;\n    display: inline-block;\n    text-align: center; } }\n", ""]);
-=======
-	exports.push([module.id, "/* app/main.scss */\nbody {\n  background: #f6fafa; }\n\n.navbar navbar-default {\n  border-width: 0;\n  border-radius: none; }\n\n.navbar-default .navbar-nav > li > a {\n  color: #000; }\n\n.navbar {\n  background-color: #d6279a; }\n\n.nav-logo {\n  width: 269px;\n  margin-top: -5px; }\n\n.navbar-default .navbar-brand {\n  color: #003333; }\n\n.navbar-brand {\n  font-family: 'Raleway', sans-serif;\n  font-size: 1.65em;\n  font-weight: 500; }\n\n.btn-danger {\n  color: #000; }\n\n.btn-default {\n  background-color: #e5e5e5; }\n\n/* Webkit / Chrome Specific CSS to remove tap\nhighlight color */\n.btn {\n  -webkit-tap-highlight-color: transparent; }\n\nbutton {\n  margin-right: 8px; }\n\ninput:invalid {\n  border: 1px solid #951b6b; }\n\ninput:valid, .valid {\n  border: 1px solid #048D7C; }\n\ninput:active,\ninput:hover,\ninput:focus,\ntextarea:active,\ntextarea:hover,\ntextarea:focus {\n  background-color: #e5e5e5; }\n\n/* This is the style of our error messages */\n.error {\n  width: 100%;\n  min-height: 25px;\n  padding-top: 5px;\n  padding-left: 5px;\n  color: #80175c;\n  -moz-box-sizing: border-box;\n  box-sizing: border-box; }\n\n.error.active {\n  padding: 0.3em; }\n\n.spacer-md {\n  height: 50px; }\n\n.dynamic-header {\n  color: #21586b;\n  text-decoration: underline; }\n\n.event-heading {\n  padding: 5px;\n  border: 1px solid #e267b8;\n  border-top-left-radius: 8px;\n  border-top-right-radius: 8px; }\n\ndetails {\n  margin-bottom: 10px; }\n\nul {\n  -webkit-padding-start: 15px; }\n\n.event-list {\n  list-style-type: none;\n  background-color: #fae9f4;\n  border: 1px solid #e267b8;\n  border-bottom-left-radius: 8px;\n  border-bottom-right-radius: 8px; }\n\n.event-item {\n  padding: 5px 0; }\n\n.fa-heart {\n  color: #d6279a; }\n\n.hide-fa {\n  display: none; }\n\n.footer {\n  padding-top: 30px; }\n\n@media (min-width: 768px) {\n  .btn-block {\n    width: 200px;\n    display: inline-block;\n    text-align: center; } }\n", ""]);
->>>>>>> v1
-=======
 	exports.push([module.id, "/* app/main.scss */\nbody {\n  background: #f6fafa; }\n\n.navbar navbar-default {\n  border-width: 0;\n  border-radius: none; }\n\n.navbar-default .navbar-nav > li > a {\n  color: #000; }\n\n.navbar {\n  background-color: #d6279a; }\n\n.nav-logo {\n  width: 269px;\n  margin-top: -5px; }\n\n.navbar-default .navbar-brand {\n  color: #003333; }\n\n.navbar-brand {\n  font-family: 'Raleway', sans-serif;\n  font-size: 1.65em;\n  font-weight: 500; }\n\n.btn-danger {\n  color: #000; }\n\n.btn-default {\n  background-color: #e5e5e5; }\n\n/* Webkit / Chrome Specific CSS to remove tap\nhighlight color */\n.btn {\n  -webkit-tap-highlight-color: transparent; }\n\nbutton {\n  margin-right: 8px; }\n\ninput:invalid, .invalid {\n  border: 1px solid #951b6b; }\n\ninput:valid, .valid {\n  border: 1px solid #048D7C; }\n\ninput:active,\ninput:hover,\ninput:focus,\ntextarea:active,\ntextarea:hover,\ntextarea:focus {\n  background-color: #e5e5e5; }\n\n/* This is the style of our error messages */\n.error {\n  width: 100%;\n  min-height: 25px;\n  padding-top: 5px;\n  padding-left: 5px;\n  color: #80175c;\n  -moz-box-sizing: border-box;\n  box-sizing: border-box; }\n\n.error.active {\n  padding: 0.3em; }\n\n.spacer-md {\n  height: 50px; }\n\n.dynamic-header {\n  color: #21586b;\n  text-decoration: underline; }\n\n.event-heading {\n  padding: 5px;\n  border: 1px solid #e267b8;\n  border-top-left-radius: 8px;\n  border-top-right-radius: 8px; }\n\ndetails {\n  margin-bottom: 10px; }\n\nul {\n  -webkit-padding-start: 15px; }\n\n.event-list {\n  list-style-type: none;\n  background-color: #fae9f4;\n  border: 1px solid #e267b8;\n  border-bottom-left-radius: 8px;\n  border-bottom-right-radius: 8px; }\n\n.event-item {\n  padding: 5px 0; }\n\n.fa-heart {\n  color: #d6279a; }\n\n.hide-fa {\n  display: none; }\n\n.footer {\n  padding-top: 30px; }\n\n@media (min-width: 768px) {\n  .btn-block {\n    width: 200px;\n    display: inline-block;\n    text-align: center; } }\n", ""]);
->>>>>>> v1
 
 	// exports
 
