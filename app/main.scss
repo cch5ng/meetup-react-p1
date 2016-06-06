@@ -66,11 +66,11 @@ button {
 	margin-right: 8px;
 }
 
-input:invalid {
+input:invalid, .invalid {
 	border: 1px solid #951b6b;
 }
 
-input:valid {
+input:valid, .valid {
 	border: 1px solid #048D7C;
 }
 

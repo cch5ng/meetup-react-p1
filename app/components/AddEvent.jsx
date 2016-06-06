@@ -15,9 +15,11 @@ export default class AddEvent extends React.Component {
 			geoZip: '',
 			isStartDateValid: true,
 			startDateErrors: '',
-			isEndTimeValid: true,
-			endTimeErrors: '',
-			startTimeMin: null
+			isEndDateValid: true,
+			endDateErrors: '',
+			startTimeMin: null,
+			isGuestsTextValid: false,
+			guestsTextErrors: ''
 		}
 	}
 
@@ -47,14 +49,12 @@ export default class AddEvent extends React.Component {
 							</datalist>
 						</div>
 					</div>
-{/* NOTE to REVIEWER: removed this because it seemed redundant, this data should be grabbed from cur user session info
 					<div className="form-group">
 						<label htmlFor="evt-host" className="col-sm-2 control-label">Host</label>
 						<div className="col-sm-10">
-							<input type="text" id="evt-host" className="form-control" name="evt-host" required />
+							<input type="text" id="evt-host" className="form-control" name="evt-host" placeholder="individual or organization" required />
 						</div>
 					</div>
-*/}
 					<div className="form-group">
 						<label htmlFor="evt-start-date" className="col-sm-2 control-label">Start Date/Time</label>
 						<div className="col-sm-10">
@@ -63,12 +63,22 @@ export default class AddEvent extends React.Component {
 						</div>
 					</div>
 					<div className="form-group">
+						<label htmlFor="evt-end-date" className="col-sm-2 control-label">End Date/Time</label>
+						<div className="col-sm-10">
+							<input id="evt-end-date" className="form-control" type="datetime-local" name="evt-end-date" alt="event end date and time" onChange={this.validateEndDate} required />
+							{this.state.isEndDateValid ? null : this.displayEndDateError()}
+						</div>
+					</div>
+
+{/*
+					<div className="form-group">
 						<label htmlFor="evt-end-time" className="col-sm-2 control-label">End Time</label>
 						<div className="col-sm-10">
 							<input id="evt-end-time" className="form-control" type="time" name="evt-end-time" alt="event end time" onChange={this.validateEndTime} />
 							{this.state.isEndTimeValid ? null : this.displayEndTimeError()}
 						</div>
 					</div>
+*/}
 					<div className="form-group">
 						<div className="col-sm-offset-2 col-sm-10">
 							<div className="checkbox">
@@ -79,12 +89,14 @@ export default class AddEvent extends React.Component {
 						</div>
 					</div>
 					<div className="add-group">
+{/*
 						<div className="form-group">
 							<label htmlFor="venue" className="col-sm-2 control-label">Venue</label>
 							<div className="col-sm-10">
-								<input type="text" id="venue" className="form-control" name="venue" alt="event venue name" placeholder="(optional)" />
+								<input type="text" id="venue" className="form-control" name="venue" alt="event venue name" placeholder="optional" />
 							</div>
 						</div>
+*/}
 						<div className="form-group">
 							<label htmlFor="add1" className="col-sm-2 control-label">Street Address</label>
 							<div className="col-sm-10">
@@ -105,18 +117,17 @@ export default class AddEvent extends React.Component {
 						</div>
 					</div>
 					<div className="form-group">
-						<label htmlFor="event-msg" className="col-sm-2 control-label">Event Note</label>
+						<label htmlFor="event-guests" className="col-sm-2 control-label">Guests</label>
 						<div className="col-sm-10">
-							<input type="text" id="event-msg" className="form-control" name="event-msg" alt="note to attendees" placeholder="(optional)" />
+							<textarea id="event-guests" className={this.getGuestsTextClass()} alt="guest list" onChange={this.validateGuestsText} required placeholder="Separate guests with a new line"></textarea>
 						</div>
 					</div>
 					<div className="form-group">
-						<label htmlFor="event-guests" className="col-sm-2 control-label">Guests</label>
+						<label htmlFor="event-msg" className="col-sm-2 control-label">Event Note</label>
 						<div className="col-sm-10">
-							<textarea id="event-guests" className="form-control" alt="guest list" placeholder="(optional) Separate guests with a new line"></textarea>
+							<input type="text" id="event-msg" className="form-control" name="event-msg" alt="note to attendees" placeholder="optional" />
 						</div>
 					</div>
-
 					<div className="text-center">
 						<button className="btn btn-primary btn-block" id="event-submit" onClick={this.validateEventForm} type="button">Save</button>
 					</div>
@@ -261,6 +272,53 @@ export default class AddEvent extends React.Component {
 	/**
 	 *@param
 	 *@return
+	 * Checks whether the start date/time is after the current date. If the check fails, it sets an error message in state.
+	 */
+	validateEndDate = () => {
+		let curDate = new Date();
+		curDate.setHours(curDate.getHours() - 7);
+
+		let endDateInp = document.getElementById('evt-end-date');
+		//console.log('startDateInp val: ' + startDateInp.value);
+		let startTimeMin = this.dateStrToTimeMinutes(startDateInp.value);
+		let startDate =  new Date(startDateInp.value);
+		//console.log('startDate: ' + startDate);
+		//console.log('curDate: ' + curDate);
+		//verify start date later than cur date/time
+		//console.log('startDate ms: ' + startDate.getTime());
+		//console.log('curDate ms: ' + curDate.getTime());
+		if (startDate.getTime() < curDate.getTime()) {
+			//convert start time to array value
+			//error condition
+			this.setState(
+				{isStartDateValid: false,
+				startDateErrors: 'The start date and time should be in the future',
+				startTimeMin: null}
+			);
+		} else {
+			//clear errors
+			this.setState(
+				{isStartDateValid: true,
+				startDateErrors: '',
+				startTimeMin: startTimeMin}
+			);
+		}
+	}
+
+	/**
+	 *@param
+	 *@return
+	 * Displays start date/time validation error.
+	 */
+	displayEndDateError = () => {
+		return (
+			<p className="start-date-error error">{this.state.startDateErrors}</p>
+		)
+	}
+
+	/**
+	 *@param
+	 *@return
 	 * Converts time portion from the start date/time to units minutes. This allows for simplest comparison with the end time.
 	 */
 	dateStrToTimeMinutes = (dateStr) => {
@@ -341,6 +399,34 @@ export default class AddEvent extends React.Component {
 	guestStrToList = () => {
 		let guests = document.getElementById('event-guests');
 		return guests.value.split('\n');
+	}
+
+	/**
+	 *@param
+	 *@return
+	 * 
+	 */
+	getGuestsTextClass = () => {
+		if (this.state.isGuestsTextValid) {
+			return 'form-control valid';
+		} else {
+			return 'form-control invalid';
+		}
+	}
+
+	validateGuestsText = () => {
+		let guests = document.getElementById('event-guests');
+		if (guests.value.length == 0) {
+			this.setState({
+				isGuestsTextValid: false,
+				guestsTextErrors: 'Please enter a guest name'}
+			);
+		} else {
+			this.setState({
+				isGuestsTextValid: true,
+				guestsTextErrors: ''}
+			);
+		}
 	}
 
 	/**
