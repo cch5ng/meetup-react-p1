@@ -66,7 +66,7 @@ button {
 	margin-right: 8px;
 }
 
-input:invalid {
+input:invalid, .invalid {
 	border: 1px solid #951b6b;
 }
 
