@@ -1,4 +1,4 @@
-# Meetup Events (React-Firebase)
+# Meetup Events
 
 * [Work in Progress] Practice for forms
 * Using React, ES6
