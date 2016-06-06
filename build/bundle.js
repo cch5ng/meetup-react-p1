@@ -25524,6 +25524,41 @@
 				);
 			};
 
+			_this.validateEndDate = function () {
+				var curDate = new Date();
+				curDate.setHours(curDate.getHours() - 7);
+
+				var endDateInp = document.getElementById('evt-end-date');
+				//console.log('startDateInp val: ' + startDateInp.value);
+				var startTimeMin = _this.dateStrToTimeMinutes(startDateInp.value);
+				var startDate = new Date(startDateInp.value);
+				//console.log('startDate: ' + startDate);
+				//console.log('curDate: ' + curDate);
+				//verify start date later than cur date/time
+				//console.log('startDate ms: ' + startDate.getTime());
+				//console.log('curDate ms: ' + curDate.getTime());
+				if (startDate.getTime() < curDate.getTime()) {
+					//convert start time to array value
+					//error condition
+					_this.setState({ isStartDateValid: false,
+						startDateErrors: 'The start date and time should be in the future',
+						startTimeMin: null });
+				} else {
+					//clear errors
+					_this.setState({ isStartDateValid: true,
+						startDateErrors: '',
+						startTimeMin: startTimeMin });
+				}
+			};
+
+			_this.displayEndDateError = function () {
+				return _react2.default.createElement(
+					'p',
+					{ className: 'start-date-error error' },
+					_this.state.startDateErrors
+				);
+			};
+
 			_this.dateStrToTimeMinutes = function (dateStr) {
 				var dateAr = [];
 				var timeMinutes = void 0,
@@ -25587,6 +25622,27 @@
 				return guests.value.split('\n');
 			};
 
+			_this.getGuestsTextClass = function () {
+				if (_this.state.isGuestsTextValid) {
+					return 'form-control valid';
+				} else {
+					return 'form-control invalid';
+				}
+			};
+
+			_this.validateGuestsText = function () {
+				var guests = document.getElementById('event-guests');
+				if (guests.value.length == 0) {
+					_this.setState({
+						isGuestsTextValid: false,
+						guestsTextErrors: 'Please enter a guest name' });
+				} else {
+					_this.setState({
+						isGuestsTextValid: true,
+						guestsTextErrors: '' });
+				}
+			};
+
 			_this.validateEventForm = function () {
 				var guestAr = _this.guestStrToList();
 				//TODO
@@ -25605,9 +25661,11 @@
 				geoZip: '',
 				isStartDateValid: true,
 				startDateErrors: '',
-				isEndTimeValid: true,
-				endTimeErrors: '',
-				startTimeMin: null
+				isEndDateValid: true,
+				endDateErrors: '',
+				startTimeMin: null,
+				isGuestsTextValid: false,
+				guestsTextErrors: ''
 			};
 			return _this;
 		}
@@ -25677,7 +25735,7 @@
 							_react2.default.createElement(
 								'div',
 								{ className: 'col-sm-10' },
-								_react2.default.createElement('input', { type: 'text', id: 'evt-host', className: 'form-control', name: 'evt-host', required: true })
+								_react2.default.createElement('input', { type: 'text', id: 'evt-host', className: 'form-control', name: 'evt-host', placeholder: 'individual or organization', required: true })
 							)
 						),
 						_react2.default.createElement(
@@ -25700,14 +25758,14 @@
 							{ className: 'form-group' },
 							_react2.default.createElement(
 								'label',
-								{ htmlFor: 'evt-end-time', className: 'col-sm-2 control-label' },
-								'End Time'
+								{ htmlFor: 'evt-end-date', className: 'col-sm-2 control-label' },
+								'End Date/Time'
 							),
 							_react2.default.createElement(
 								'div',
 								{ className: 'col-sm-10' },
-								_react2.default.createElement('input', { id: 'evt-end-time', className: 'form-control', type: 'time', name: 'evt-end-time', alt: 'event end time', onChange: this.validateEndTime }),
-								this.state.isEndTimeValid ? null : this.displayEndTimeError()
+								_react2.default.createElement('input', { id: 'evt-end-date', className: 'form-control', type: 'datetime-local', name: 'evt-end-date', alt: 'event end date and time', onChange: this.validateEndDate, required: true }),
+								this.state.isEndDateValid ? null : this.displayEndDateError()
 							)
 						),
 						_react2.default.createElement(
@@ -25731,20 +25789,6 @@
 						_react2.default.createElement(
 							'div',
 							{ className: 'add-group' },
-							_react2.default.createElement(
-								'div',
-								{ className: 'form-group' },
-								_react2.default.createElement(
-									'label',
-									{ htmlFor: 'venue', className: 'col-sm-2 control-label' },
-									'Venue'
-								),
-								_react2.default.createElement(
-									'div',
-									{ className: 'col-sm-10' },
-									_react2.default.createElement('input', { type: 'text', id: 'venue', className: 'form-control', name: 'venue', alt: 'event venue name', placeholder: 'optional' })
-								)
-							),
 							_react2.default.createElement(
 								'div',
 								{ className: 'form-group' },
@@ -25793,13 +25837,13 @@
 							{ className: 'form-group' },
 							_react2.default.createElement(
 								'label',
-								{ htmlFor: 'event-msg', className: 'col-sm-2 control-label' },
-								'Event Note'
+								{ htmlFor: 'event-guests', className: 'col-sm-2 control-label' },
+								'Guests'
 							),
 							_react2.default.createElement(
 								'div',
 								{ className: 'col-sm-10' },
-								_react2.default.createElement('input', { type: 'text', id: 'event-msg', className: 'form-control', name: 'event-msg', alt: 'note to attendees', placeholder: 'optional' })
+								_react2.default.createElement('textarea', { id: 'event-guests', className: this.getGuestsTextClass(), alt: 'guest list', onChange: this.validateGuestsText, required: true, placeholder: 'Separate guests with a new line' })
 							)
 						),
 						_react2.default.createElement(
@@ -25807,13 +25851,13 @@
 							{ className: 'form-group' },
 							_react2.default.createElement(
 								'label',
-								{ htmlFor: 'event-guests', className: 'col-sm-2 control-label' },
-								'Guests'
+								{ htmlFor: 'event-msg', className: 'col-sm-2 control-label' },
+								'Event Note'
 							),
 							_react2.default.createElement(
 								'div',
 								{ className: 'col-sm-10' },
-								_react2.default.createElement('textarea', { id: 'event-guests', className: 'form-control valid', alt: 'guest list', placeholder: 'optional Separate guests with a new line' })
+								_react2.default.createElement('input', { type: 'text', id: 'event-msg', className: 'form-control', name: 'event-msg', alt: 'note to attendees', placeholder: 'optional' })
 							)
 						),
 						_react2.default.createElement(
@@ -25873,6 +25917,20 @@
 			/**
 	   *@param
 	   *@return
+	   * Checks whether the start date/time is after the current date. If the check fails, it sets an error message in state.
+	   */
+
+
+			/**
+	   *@param
+	   *@return
+	   * Displays start date/time validation error.
+	   */
+
+
+			/**
+	   *@param
+	   *@return
 	   * Converts time portion from the start date/time to units minutes. This allows for simplest comparison with the end time.
 	   */
 
@@ -25904,6 +25962,13 @@
 	   * Converts string format of guest list to an array.
 	   */
 			//parse guest string input val to array
+
+
+			/**
+	   *@param
+	   *@return
+	   * 
+	   */
 
 
 			/**
@@ -31828,7 +31893,7 @@
 
 
 	// module
-	exports.push([module.id, "/* app/main.scss */\nbody {\n  background: #f6fafa; }\n\n.navbar navbar-default {\n  border-width: 0;\n  border-radius: none; }\n\n.navbar-default .navbar-nav > li > a {\n  color: #000; }\n\n.navbar {\n  background-color: #d6279a; }\n\n.nav-logo {\n  width: 269px;\n  margin-top: -5px; }\n\n.navbar-default .navbar-brand {\n  color: #003333; }\n\n.navbar-brand {\n  font-family: 'Raleway', sans-serif;\n  font-size: 1.65em;\n  font-weight: 500; }\n\n.btn-danger {\n  color: #000; }\n\n.btn-default {\n  background-color: #e5e5e5; }\n\n/* Webkit / Chrome Specific CSS to remove tap\nhighlight color */\n.btn {\n  -webkit-tap-highlight-color: transparent; }\n\nbutton {\n  margin-right: 8px; }\n\ninput:invalid {\n  border: 1px solid #951b6b; }\n\ninput:valid, .valid {\n  border: 1px solid #048D7C; }\n\ninput:active,\ninput:hover,\ninput:focus,\ntextarea:active,\ntextarea:hover,\ntextarea:focus {\n  background-color: #e5e5e5; }\n\n/* This is the style of our error messages */\n.error {\n  width: 100%;\n  min-height: 25px;\n  padding-top: 5px;\n  padding-left: 5px;\n  color: #80175c;\n  -moz-box-sizing: border-box;\n  box-sizing: border-box; }\n\n.error.active {\n  padding: 0.3em; }\n\n.spacer-md {\n  height: 50px; }\n\n.dynamic-header {\n  color: #21586b;\n  text-decoration: underline; }\n\n.event-heading {\n  padding: 5px;\n  border: 1px solid #e267b8;\n  border-top-left-radius: 8px;\n  border-top-right-radius: 8px; }\n\ndetails {\n  margin-bottom: 10px; }\n\nul {\n  -webkit-padding-start: 15px; }\n\n.event-list {\n  list-style-type: none;\n  background-color: #fae9f4;\n  border: 1px solid #e267b8;\n  border-bottom-left-radius: 8px;\n  border-bottom-right-radius: 8px; }\n\n.event-item {\n  padding: 5px 0; }\n\n.fa-heart {\n  color: #d6279a; }\n\n.hide-fa {\n  display: none; }\n\n.footer {\n  padding-top: 30px; }\n\n@media (min-width: 768px) {\n  .btn-block {\n    width: 200px;\n    display: inline-block;\n    text-align: center; } }\n", ""]);
+	exports.push([module.id, "/* app/main.scss */\nbody {\n  background: #f6fafa; }\n\n.navbar navbar-default {\n  border-width: 0;\n  border-radius: none; }\n\n.navbar-default .navbar-nav > li > a {\n  color: #000; }\n\n.navbar {\n  background-color: #d6279a; }\n\n.nav-logo {\n  width: 269px;\n  margin-top: -5px; }\n\n.navbar-default .navbar-brand {\n  color: #003333; }\n\n.navbar-brand {\n  font-family: 'Raleway', sans-serif;\n  font-size: 1.65em;\n  font-weight: 500; }\n\n.btn-danger {\n  color: #000; }\n\n.btn-default {\n  background-color: #e5e5e5; }\n\n/* Webkit / Chrome Specific CSS to remove tap\nhighlight color */\n.btn {\n  -webkit-tap-highlight-color: transparent; }\n\nbutton {\n  margin-right: 8px; }\n\ninput:invalid, .invalid {\n  border: 1px solid #951b6b; }\n\ninput:valid, .valid {\n  border: 1px solid #048D7C; }\n\ninput:active,\ninput:hover,\ninput:focus,\ntextarea:active,\ntextarea:hover,\ntextarea:focus {\n  background-color: #e5e5e5; }\n\n/* This is the style of our error messages */\n.error {\n  width: 100%;\n  min-height: 25px;\n  padding-top: 5px;\n  padding-left: 5px;\n  color: #80175c;\n  -moz-box-sizing: border-box;\n  box-sizing: border-box; }\n\n.error.active {\n  padding: 0.3em; }\n\n.spacer-md {\n  height: 50px; }\n\n.dynamic-header {\n  color: #21586b;\n  text-decoration: underline; }\n\n.event-heading {\n  padding: 5px;\n  border: 1px solid #e267b8;\n  border-top-left-radius: 8px;\n  border-top-right-radius: 8px; }\n\ndetails {\n  margin-bottom: 10px; }\n\nul {\n  -webkit-padding-start: 15px; }\n\n.event-list {\n  list-style-type: none;\n  background-color: #fae9f4;\n  border: 1px solid #e267b8;\n  border-bottom-left-radius: 8px;\n  border-bottom-right-radius: 8px; }\n\n.event-item {\n  padding: 5px 0; }\n\n.fa-heart {\n  color: #d6279a; }\n\n.hide-fa {\n  display: none; }\n\n.footer {\n  padding-top: 30px; }\n\n@media (min-width: 768px) {\n  .btn-block {\n    width: 200px;\n    display: inline-block;\n    text-align: center; } }\n", ""]);
 
 	// exports
 
